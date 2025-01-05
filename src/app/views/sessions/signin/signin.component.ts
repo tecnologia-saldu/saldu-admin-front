@@ -38,7 +38,7 @@ export class SigninComponent {
         .subscribe({
           next: () => {
             this.status = 'success';
-            this.router.navigate(['/invoices']);
+            this.router.navigate(['/dashboard']);
           },
           error: () => {
             this.status = 'failed';

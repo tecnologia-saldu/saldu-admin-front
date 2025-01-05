@@ -1,4 +1,4 @@
-<div class="bg-white rounded shadow-none sm:shadow-lg py-4 px-4 md:px-9">
+<div class="bg-white rounded shadow-none sm:shadow-lg py-4 px-4 mt-10 md:px-9">
     <div class="mb-4">
       <h1 class="text-center font-semibold py-2 text-xl">Welcome</h1>
       <form [formGroup]="form" (ngSubmit)="doLogin()" novalidate class="space-y-4">
@@ -56,8 +56,8 @@
     </div>
     <hr class="my-4 border-b-1 border-r-gray-300" />
     <div class="flex justify-center items-center space-x-0 space-y-2 md:space-x-2 md:space-y-0 flex-col md:flex-row">
-      <a routerLink="/forgot-password" class="text-blue-600">Can't sign in?</a>
+      <a routerLink="/forgot-password" class="text-lightblue">Can't sign in?</a>
       <span class="text-gray-500 hidden md:block">•</span>
-      <a routerLink="/sign-up" class="text-blue-600">Sign up for an account</a>
+      <a routerLink="/sign-up" class="text-lightblue">Sign up for an account</a>
     </div>
   </div>
