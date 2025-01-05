@@ -1,0 +1,43 @@
+<section class="bg-bg text-white flex flex-col justify-between sidebar">
+    <ul class="pt-2">
+        <a routerLink="/dashboard" >
+            <li class="py-4 px-8" [routerLinkActive]="['bg-bglight']">
+                <fa-icon [icon]="faChartLine"></fa-icon> Dashboard
+            </li>
+        </a>
+        <cdk-accordion>
+            <li (click)="item.toggle()" class="py-4 px-8 cursor-pointer flex items-center justify-between">
+                <div>
+                    <fa-icon [icon]="faFileLines"></fa-icon> Facturación
+                </div>
+                <fa-icon [icon]="faChevronDown" [class.rotate-180]="item.expanded"></fa-icon>
+            </li>
+            <cdk-accordion-item #item="cdkAccordionItem">
+                <a routerLink="/invoices">
+                    <li class="list-disc py-4 px-10" [routerLinkActive]="['bg-bglight']" [style.display]="item.expanded ? '' : 'none'">Ordenes pendientes
+                    </li>
+                </a>
+            </cdk-accordion-item>
+            <cdk-accordion-item #item="cdkAccordionItem">
+                <li class="list-disc py-4 px-10" [style.display]="item.expanded ? '' : 'none'">Ordenes facturadas</li>
+            </cdk-accordion-item>
+        </cdk-accordion>
+        <a href="#">
+            <li class="py-4 px-8">
+                <fa-icon [icon]="faList"></fa-icon> Mis Productos
+            </li>
+        </a>
+        <a href="#">
+            <li class="py-4 px-8">
+                <fa-icon [icon]="faDolly"></fa-icon> Mis Órdenes
+            </li>
+        </a>
+        <a href="#">
+            <li class="py-4 px-8">
+                <fa-icon [icon]="faChartBar"></fa-icon> Reportes
+            </li>
+        </a>
+    </ul>
+    <button (click)="logout()" class="py-8 hover:text-yellow"><fa-icon [icon]="faRightFromBracket"></fa-icon> Log
+        out</button>
+</section>
