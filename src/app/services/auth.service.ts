@@ -8,20 +8,20 @@ import { ResponseLogin } from '../models/auth.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private API_URL = 'https://fake-trello-api.herokuapp.com'
+  private API_URL = 'http://localhost:3000/auth/signIn'
   constructor(
     private http: HttpClient,
     private tokenService: TokenService
   ) { }
 
   login(email: string, password: string) {
-    return this.http.post<ResponseLogin>(`${this.API_URL}/api/v1/auth/login`, {
+    return this.http.post<ResponseLogin>(`${this.API_URL}`, {
       email,
       password
     })
     .pipe(
       tap(response => {
-        this.tokenService.saveToken(response.access_token);
+        this.tokenService.saveToken(response.token);
       })
     )
   }
