@@ -1,17 +1,53 @@
 export interface Invoice {
-    id: string;
-    customer_email: string | null;
-    total: number;
-    status: string;
-    created: number;
-    checkbox?: boolean;
-    customer_name: string;
-    due_date: Date;
-    customer_phone: number;
-    customer_address: string;
-    customer: string;
+    id: number;
+    orderId: number;
+    orderTotal: number;
+    documentType: string;
+    document: string;
+    businessName: string;
+    firstname: string;
+    lastname: string;
+    address: string;
+    phone: string;
+    email: string;
+    taxedPrice: number;
+    siigoId: string;
+    siigoStatus: string;
+    siigoName: string;
+    cufe: string;
+    siigoDate: string;
+    customerMailed: boolean;
+    publicUrl: string;
+    createdAt: string;
+    updatedAt: string;
+    paymentOption: PaymentOption;
+    salduInlineProducts: SalduInlineProduct[];
+    checkbox: boolean;
 }
 
+export interface SalduInlineProduct {
+    id: number;
+    taxedPrice: number;
+    createdAt: string;
+    updatedAt: string;
+    salduProduct: SalduProduct;
+}
+
+export interface SalduProduct {
+    id: number;
+    internalCode: number;
+    siigoId: string;
+    name: string;
+    description: string;
+}
+
+export interface PaymentOption {
+    id: number;
+    siigoId: number;
+    name: string;
+    type: string;
+    isActive: boolean;
+}
 
 export interface IOrders {
     id: number
@@ -47,4 +83,5 @@ export interface IMetaData {
     key: string
     value: string
 }
+
 export default IOrders

@@ -20,7 +20,7 @@
                                                     <div>
                                                         <p class="whitespace-nowrap text-lighttext text-right">Fecha</p>
                                                         <p class="whitespace-nowrap font-bold text-right">
-                                                            {{ invoice()?.due_date }}</p>
+                                                            {{ invoice()?.updatedAt }}</p>
                                                     </div>
                                                 </td>
                                                 <td class="pl-4">
@@ -56,11 +56,15 @@
                             </td>
                             <td class="w-1/2 align-top text-right">
                                 <div class="text-sm text-bglight">
-                                    <p class="font-bold">{{ invoice()?.customer_name }}</p>
-                                    <p>NIT: {{ invoice()?.customer }}</p>
-                                    <p>Dirección: {{ invoice()?.customer_address }}</p>
-                                    <p>Telefono: {{ invoice()?.customer_phone }}</p>
-                                    <p>Email: {{ invoice()?.customer_email }}</p>
+                                    @if(invoice()?.documentType == 'NIT') {
+                                        <p class="font-bold">{{ invoice()?.businessName }}</p>
+                                    } @else {
+                                        <p class="font-bold">{{ invoice()?.firstname }} {{ invoice()?.lastname }}</p>
+                                    }
+                                    <p>NIT: {{ invoice()?.document }}</p>
+                                    <p>Dirección: {{ invoice()?.address }}</p>
+                                    <p>Telefono: {{ invoice()?.phone }}</p>
+                                    <p>Email: {{ invoice()?.email }}</p>
                                 </div>
                             </td>
                         </tr>

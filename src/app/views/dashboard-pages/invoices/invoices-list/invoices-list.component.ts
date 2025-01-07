@@ -20,7 +20,7 @@ export class InvoicesListComponent {
   private invoicesService = inject(InvoicesService);
 
   invoices: Invoice[] = [];
-  
+
   ngOnInit() {
     this.getInvoices();
   }
@@ -28,10 +28,10 @@ export class InvoicesListComponent {
   getInvoices() {
     this.invoicesService.getInvoices().subscribe({
       next: (data) => {
-        this.invoices = data.data;
+        this.invoices = data;
       },
     });
-  
+
   }
 
   toggleSelectAll() {
@@ -39,7 +39,7 @@ export class InvoicesListComponent {
   }
 
   checkboxChanged() {
-    if(this.checkboxesSelected()) {
+    if (this.checkboxesSelected()) {
       this.selectAll = true;
     } else {
       this.selectAll = false;
@@ -51,13 +51,13 @@ export class InvoicesListComponent {
   }
 
   submit() {
-    if(this.selectedCheckboxes.length == 0) {
+    if (this.selectedCheckboxes.length == 0) {
       console.log('Empty selection');
     } else {
       let selectedCheckboxes = this.selectedCheckboxes;
       console.log(selectedCheckboxes);
     }
-}
+  }
 
   get selectedCheckboxes() {
     return this.invoices.filter((invoice) => invoice.checkbox);

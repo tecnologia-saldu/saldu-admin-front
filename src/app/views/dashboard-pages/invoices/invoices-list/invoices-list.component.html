@@ -1,4 +1,4 @@
-<section class="p-8 flex flex-col justify-between text-bglight">
+<section class="p-8 flex flex-col justify-between text-bglight ">
     <div>
         <h1 class="text-2xl">Facturación</h1>
         
@@ -16,13 +16,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for(invoice of invoices; track invoice.id) {
+                    @for(invoice of invoices; track $index) {
                     <tr class="text-sm p-4 bg-white">
                         <td class="p-4 border-b-2"><a [routerLink]="['/invoice-detail', invoice.id]" target="_blank">{{ invoice.id }}</a></td>
-                        <td class="p-4 border-b-2 text-center">{{ invoice.total }}</td>
-                        <td class="p-4 border-b-2">{{ invoice.id }}</td>
-                        <td class="p-4 border-b-2 text-center">{{ invoice.total }}</td>
-                        <td class="p-4 border-b-2">{{ invoice.status }}</td>
+                        <td class="p-4 border-b-2 text-center">{{ invoice.orderTotal }}</td>
+                        <td class="p-4 border-b-2">{{ invoice.taxedPrice }}</td>
+                        <td class="p-4 border-b-2 text-center">{{ invoice.createdAt }}</td>
+                        <td class="p-4 border-b-2">{{ invoice.siigoStatus }}</td>
                         <td class="p-4 border-b-2 text-center"><fa-icon [icon]="faPenToSquare"></fa-icon></td>
                         <td class="p-4 border-b-2"><input type="checkbox" [(ngModel)]="invoice.checkbox" (change)="checkboxChanged()"></td>
                     </tr>
