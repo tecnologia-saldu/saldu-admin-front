@@ -1,7 +1,8 @@
 import { Component, inject, Input, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 import { Invoice } from '../../../../models/invoice.model';
 import { InvoicesService } from '../../../../services/invoices.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-invoice-detail',
@@ -67,15 +68,15 @@ export class InvoiceDetailComponent {
     this.editMode.update((prevState) => !prevState);
   }
 
-
-
   updateInvoiceInfo(event: Event) {
     const invoiceId = this.invoice()?.id;
     const commission = this.invoice()?.salduInlineProducts.find(product => product.salduProduct.id == 4)?.taxedPrice;
-    if(invoiceId && commission) {
+    if(invoiceId && commission != undefined && commission >= 0) {
       this.invoicesService.updateInvoiceInfo(invoiceId, commission).subscribe({
         next: (data) => {
           console.log('Invoice updated successfully:', data);
+          this.invoice.set(data);
+          this.calculateTotals(data);
         },
         error: (err) => {
           console.error('Error updating invoice:', err);

@@ -95,7 +95,7 @@
                             @if(editMode()) {
                             <td class="border-b py-3 pl-2 text-center"><input class="border-2 text-center"
                                     (input)="updateProductTaxedPrice($index, $event)"
-                                    [value]="[invoiceProduct.taxedPrice]" data-type="currency" required></td>
+                                    [value]="[invoiceProduct.taxedPrice]" required></td>
                             } @else {
                             <td class="border-b py-3 pl-2 text-center">{{ invoiceProduct.taxedPrice | currency: '$':
                                 'symbol':'1.0-0' }}</td>
