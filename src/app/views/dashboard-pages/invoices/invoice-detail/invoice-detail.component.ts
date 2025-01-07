@@ -26,17 +26,7 @@ export class InvoiceDetailComponent {
         this.invoicesService.getOneInvoice(this.id!).subscribe({
           next: (data) => {
             this.invoice.set(data);
-            data.salduInlineProducts.forEach((product) =>{
-              this.subtotal.update((currentSubtotal) => {
-                return currentSubtotal + product.taxedPrice;
-              })
-            })
-            data.salduInlineProducts.forEach((product) =>{
-              this.iva.update((currentIva) => {
-                return currentIva + product.taxedPrice*product.salduProduct.charges[0].taxDiscount.value;
-              })
-            })
-            this.total.set(this.subtotal() + this.iva());
+            this.calculateTotals(data);
             resolve();
           },
           error: (err) => {
@@ -48,25 +38,46 @@ export class InvoiceDetailComponent {
     }
   }
 
-  
+  calculateTotals(data: Invoice) {
+    let subtotalValue = 0;
+    let ivaValue = 0;
+
+    data.salduInlineProducts.forEach((product) => {
+      subtotalValue += product.taxedPrice;
+      ivaValue += product.taxedPrice * product.salduProduct.charges[0].taxDiscount.value;
+    });
+
+    this.subtotal.set(subtotalValue);
+    this.iva.set(ivaValue);
+    this.total.set(subtotalValue + ivaValue);
+  }
+
+  updateProductTaxedPrice(productIndex: number, event: Event) {
+    const currentInvoice = this.invoice();
+    if (currentInvoice) {
+      const product = currentInvoice.salduInlineProducts[productIndex];
+      const inputValue = (event.target as HTMLInputElement).value;
+      product.taxedPrice = parseFloat(inputValue);
+      this.calculateTotals(currentInvoice);
+    }
+  }
 
   toggleEditMode(event: Event) {
     event.preventDefault();
     this.editMode.update((prevState) => !prevState);
+    this.updateInvoiceInfo();
   }
 
-  // submit() {
-  //   if (this.invoice().id) {
-  //     this.invoicesService.uploadToSiigo(this.invoice().id).subscribe({
-  //       next: (data) => {
-  //       }
-  //     })
-  //   }
-  // }
+  updateInvoiceInfo() {
+    const invoiceId = this.invoice()?.id;
+    const commission = this.invoice()?.salduInlineProducts.find((product) => {
+      product.salduProduct.name == "Comisión SALDU";
+    })?.taxedPrice;
+    console.log(invoiceId, commission);
+  }
 
   submit() {
     const currentInvoice = this.invoice();
-
     if (currentInvoice && currentInvoice.id) {
       this.invoicesService.uploadToSiigo(currentInvoice.id).subscribe({
         next: (data) => {

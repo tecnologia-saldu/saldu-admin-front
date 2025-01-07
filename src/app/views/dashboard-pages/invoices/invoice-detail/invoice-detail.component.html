@@ -94,7 +94,7 @@
                                 invoiceProduct.salduProduct.charges[0].taxDiscount.value * 100 }}%</td>
                             @if(editMode()) {
                             <td class="border-b py-3 pl-2 text-center"><input class="border-2 max-w-fit" type="text"
-                                    [defaultValue]="[invoiceProduct.taxedPrice]" required></td>
+                                (input)="updateProductTaxedPrice($index, $event)" [value]="[invoiceProduct.taxedPrice]" required></td>
                             } @else {
                             <td class="border-b py-3 pl-2 text-center">{{ invoiceProduct.taxedPrice | currency: '$':
                                 'symbol':'1.0-0' }}</td>
@@ -181,7 +181,7 @@
         </footer>  -->
             <div class="flex justify-end mt-28 pr-10 gap-4">
                 @if(editMode()) {
-                <button (click)="toggleEditMode($event)"
+                <button (click)="toggleEditMode($event)" (click)="updateInvoiceInfo()"
                     class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Guardar</button>
 
                 } @else {
