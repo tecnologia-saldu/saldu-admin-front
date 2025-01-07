@@ -16,6 +16,7 @@
             "outputPath": "dist/saldu-new",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "baseHref": "/saldu-admin-app/",
             "polyfills": [
               "zone.js"
             ],
