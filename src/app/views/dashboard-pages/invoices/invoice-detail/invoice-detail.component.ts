@@ -65,15 +65,24 @@ export class InvoiceDetailComponent {
   toggleEditMode(event: Event) {
     event.preventDefault();
     this.editMode.update((prevState) => !prevState);
-    this.updateInvoiceInfo();
   }
 
-  updateInvoiceInfo() {
+
+
+  updateInvoiceInfo(event: Event) {
     const invoiceId = this.invoice()?.id;
-    const commission = this.invoice()?.salduInlineProducts.find((product) => {
-      product.salduProduct.name == "Comisión SALDU";
-    })?.taxedPrice;
-    console.log(invoiceId, commission);
+    const commission = this.invoice()?.salduInlineProducts.find(product => product.salduProduct.id == 4)?.taxedPrice;
+    if(invoiceId && commission) {
+      this.invoicesService.updateInvoiceInfo(invoiceId, commission).subscribe({
+        next: (data) => {
+          console.log('Invoice updated successfully:', data);
+        },
+        error: (err) => {
+          console.error('Error updating invoice:', err);
+        }
+      });
+    }
+    this.toggleEditMode(event);
   }
 
   submit() {

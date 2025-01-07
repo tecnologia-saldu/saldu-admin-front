@@ -93,8 +93,9 @@
                             <td class="border-b py-3 pl-2 text-center">{{
                                 invoiceProduct.salduProduct.charges[0].taxDiscount.value * 100 }}%</td>
                             @if(editMode()) {
-                            <td class="border-b py-3 pl-2 text-center"><input class="border-2 max-w-fit" type="text"
-                                (input)="updateProductTaxedPrice($index, $event)" [value]="[invoiceProduct.taxedPrice]" required></td>
+                            <td class="border-b py-3 pl-2 text-center"><input class="border-2 text-center"
+                                    (input)="updateProductTaxedPrice($index, $event)"
+                                    [value]="[invoiceProduct.taxedPrice]" data-type="currency" required></td>
                             } @else {
                             <td class="border-b py-3 pl-2 text-center">{{ invoiceProduct.taxedPrice | currency: '$':
                                 'symbol':'1.0-0' }}</td>
@@ -120,7 +121,8 @@
                                                         </td>
                                                         <td class="border-b p-3 text-right">
                                                             <div class="whitespace-nowrap font-bold text-main">
-                                                                {{ subtotal() }}
+                                                                {{ subtotal() |
+                                                                currency: '$': 'symbol':'1.0-0' }}
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -130,7 +132,9 @@
                                                             </div>
                                                         </td>
                                                         <td class="p-3 text-right">
-                                                            <div class="whitespace-nowrap font-bold text-main">{{ iva() }}
+                                                            <div class="whitespace-nowrap font-bold text-main">{{ iva()
+                                                                |
+                                                                currency: '$': 'symbol':'1.0-0' }}
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -142,7 +146,8 @@
                                                         </td>
                                                         <td class="bg-main p-3 text-right">
                                                             <div class="whitespace-nowrap font-bold text-white">
-                                                                {{ total() }}
+                                                                {{ total() |
+                                                                currency: '$': 'symbol':'1.0-0' }}
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -181,7 +186,7 @@
         </footer>  -->
             <div class="flex justify-end mt-28 pr-10 gap-4">
                 @if(editMode()) {
-                <button (click)="toggleEditMode($event)" (click)="updateInvoiceInfo()"
+                <button (click)="updateInvoiceInfo($event)"
                     class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Guardar</button>
 
                 } @else {
