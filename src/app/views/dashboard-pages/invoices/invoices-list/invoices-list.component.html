@@ -1,7 +1,6 @@
 <section class="p-8 flex flex-col justify-between text-bglight ">
     <div>
         <h1 class="text-2xl">Facturación</h1>
-        
         <div>
             <table class="w-full border-collapse border-spacing-0">
                 <thead>
@@ -12,19 +11,26 @@
                         <td class="p-4 text-center">Fecha de pedido</td>
                         <td class="p-4">Estado</td>
                         <td class="p-4 text-center">Editar</td>
-                        <td class="p-4"><input type="checkbox" [(ngModel)]="selectAll" (change)="toggleSelectAll()"></td>
+                        <td class="p-4"><input type="checkbox" [(ngModel)]="selectAll" (change)="toggleSelectAll()">
+                        </td>
                     </tr>
                 </thead>
                 <tbody>
                     @for(invoice of invoices; track $index) {
-                    <tr [routerLink]="['/invoice-detail', invoice.id]" target="_blank" class="text-sm p-4 bg-white cursor-pointer">
-                        <td class="p-4 border-b-2">{{ invoice.orderId }}</td>
-                        <td class="p-4 border-b-2 text-center">{{ invoice.orderTotal | currency: '$': 'symbol':'1.0-0' }}</td>
-                        <td class="p-4 border-b-2">{{ invoice.taxedPrice | currency: '$': 'symbol':'1.0-0' }}</td>
-                        <td class="p-4 border-b-2 text-center">{{ invoice.createdAt.substring(0, 10) }}</td>
-                        <td class="p-4 border-b-2">{{ invoice.siigoStatus }}</td>
+                    <tr class="text-sm p-4 bg-white">
+                        <td class="p-4 border-b-2"><a [routerLink]="['/invoice-detail', invoice.id]" target="_blank">{{
+                                invoice.orderId }}</a></td>
+                        <td class="p-4 border-b-2 text-center"><a [routerLink]="['/invoice-detail', invoice.id]"
+                                target="_blank">{{ invoice.orderTotal | currency: '$': 'symbol':'1.0-0' }}</a></td>
+                        <td class="p-4 border-b-2"><a [routerLink]="['/invoice-detail', invoice.id]" target="_blank">{{
+                                invoice.taxedPrice | currency: '$': 'symbol':'1.0-0' }}</a></td>
+                        <td class="p-4 border-b-2 text-center"><a [routerLink]="['/invoice-detail', invoice.id]"
+                                target="_blank">{{ invoice.createdAt.substring(0, 10) }}</a></td>
+                        <td class="p-4 border-b-2"><a [routerLink]="['/invoice-detail', invoice.id]" target="_blank">{{
+                                invoice.siigoStatus }}</a></td>
                         <td class="p-4 border-b-2 text-center"><fa-icon [icon]="faPenToSquare"></fa-icon></td>
-                        <td class="p-4 border-b-2"><input type="checkbox" [(ngModel)]="invoice.checkbox" (change)="checkboxChanged()"></td>
+                        <td class="p-4 border-b-2"><input type="checkbox" [(ngModel)]="invoice.checkbox"
+                                (change)="checkboxChanged()"></td>
                     </tr>
                     }
                 </tbody>
@@ -32,7 +38,6 @@
         </div>
     </div>
     <div class="flex justify-end bottom">
-        <button (click)="submit()"
-        class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Facturar</button>
+        <button (click)="submit()" class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Facturar</button>
     </div>
 </section>

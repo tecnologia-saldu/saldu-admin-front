@@ -32,7 +32,6 @@ export class InvoicesListComponent {
         this.invoices = data;
       },
     });
-
   }
 
   toggleSelectAll() {
@@ -55,8 +54,13 @@ export class InvoicesListComponent {
     if (this.selectedCheckboxes.length == 0) {
       console.log('Empty selection');
     } else {
-      let selectedCheckboxes = this.selectedCheckboxes;
-      console.log(selectedCheckboxes);
+      for (const invoice of this.selectedCheckboxes) {
+        this.invoicesService.uploadToSiigo(invoice.id).subscribe({
+          next: (data) => {
+
+          }
+        })
+      }
     }
   }
 

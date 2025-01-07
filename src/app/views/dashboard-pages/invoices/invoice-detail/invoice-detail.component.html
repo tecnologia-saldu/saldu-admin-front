@@ -57,9 +57,9 @@
                             <td class="w-1/2 align-top text-right">
                                 <div class="text-sm text-bglight">
                                     @if(invoice()?.documentType == 'NIT') {
-                                        <p class="font-bold">{{ invoice()?.businessName }}</p>
+                                    <p class="font-bold">{{ invoice()?.businessName }}</p>
                                     } @else {
-                                        <p class="font-bold">{{ invoice()?.firstname }} {{ invoice()?.lastname }}</p>
+                                    <p class="font-bold">{{ invoice()?.firstname }} {{ invoice()?.lastname }}</p>
                                     }
                                     <p>NIT: {{ invoice()?.document }}</p>
                                     <p>Dirección: {{ invoice()?.address }}</p>
@@ -86,21 +86,35 @@
                     </thead>
                     <tbody>
                         @for(invoiceProduct of invoice()?.salduInlineProducts; track $index ) {
-                            <tr>
-                                <td class="border-b py-3 pl-3"> {{ $index }}</td>
-                                <td class="border-b py-3 pl-2">{{ invoiceProduct.salduProduct.description }}</td>
-                                <td class="border-b py-3 pl-2 text-right">1</td>
-                                <td class="border-b py-3 pl-2 text-center">{{ invoiceProduct.salduProduct.charges[0].taxDiscount.value * 100 }}%</td>
-                                <td class="border-b py-3 pl-2 text-center">{{ invoiceProduct.taxedPrice | currency: '$': 'symbol':'1.0-0' }}</td>
-                                <td class="border-b py-3 pl-2 text-center">{{ invoiceProduct.taxedPrice*(1+invoiceProduct.salduProduct.charges[0].taxDiscount.value) | currency: '$': 'symbol':'1.0-0' }}</td>
-                            </tr>
+                        <tr>
+                            <td class="border-b py-3 pl-3"> {{ $index }}</td>
+                            <td class="border-b py-3 pl-2">{{ invoiceProduct.salduProduct.description }}</td>
+                            <td class="border-b py-3 pl-2 text-right">1</td>
+                            <td class="border-b py-3 pl-2 text-center">{{
+                                invoiceProduct.salduProduct.charges[0].taxDiscount.value * 100 }}%</td>
+                            @if(editMode()) {
+                            <input type="text">
+                            } @else {
+                            <td class="border-b py-3 pl-2 text-center">{{ invoiceProduct.taxedPrice | currency: '$':
+                                'symbol':'1.0-0' }}</td>
+                            }
+
+                            <td class="border-b py-3 pl-2 text-center">{{
+                                invoiceProduct.taxedPrice*(1+invoiceProduct.salduProduct.charges[0].taxDiscount.value) |
+                                currency: '$': 'symbol':'1.0-0' }}</td>
+                        </tr>
                         }
                         <tr>
                             <td class="border-b py-3 pl-3">2.</td>
                             <td class="border-b py-3 pl-2">Taxation consulting (hour)</td>
                             <td class="border-b py-3 pl-2 text-right">1</td>
                             <td class="border-b py-3 pl-2 text-center">19%</td>
+                            @if(editMode()) {
+                            <td class="border-b py-3 pl-2 text-center"><input class="border-2 max-w-fit" type="text" defaultValue="$850" required></td>
+                            } @else {
                             <td class="border-b py-3 pl-2 text-center">$500</td>
+
+                            }
                             <td class="border-b py-3 pl-2 text-center">$200</td>
                         </tr>
                         <tr>
@@ -180,7 +194,7 @@
                 for previewing layouts and visual mockups.</p>
         </div>-->
 
-        <!-- <footer class="fixed bottom-0 left-0 bg-light w-full text-bglight text-center text-xs py-3">
+            <!-- <footer class="fixed bottom-0 left-0 bg-light w-full text-bglight text-center text-xs py-3">
             Supplier Company
             <span class="text-slate-300 px-2">|</span>
             info&#64;company.com
@@ -188,8 +202,16 @@
             +1-202-555-0106
         </footer>  -->
             <div class="flex justify-end mt-28 pr-10 gap-4">
-                <button class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Editar</button>
-                <button (click)="submit()" class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Facturar</button>
+                @if(editMode()) {
+                <button (click)="toggleEditMode($event)"
+                    class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Guardar</button>
+
+                } @else {
+                <button (click)="toggleEditMode($event)"
+                    class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Editar</button>
+                }
+                <button (click)="submit()"
+                    class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Facturar</button>
             </div>
         </div>
     </div>

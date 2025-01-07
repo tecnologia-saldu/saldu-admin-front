@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class InvoiceDetailComponent {
   @Input() id!: string;
 
+  editMode = signal(false);
   invoice = signal<Invoice | null>(null);
   private invoicesService = inject(InvoicesService);
 
@@ -34,7 +35,36 @@ export class InvoiceDetailComponent {
     }
   }
 
-  submit() {
-    console.log(this.invoice());
+  toggleEditMode(event: Event) {
+    event.preventDefault();
+    this.editMode.update((prevState) => !prevState);
   }
+
+  // submit() {
+  //   if (this.invoice().id) {
+  //     this.invoicesService.uploadToSiigo(this.invoice().id).subscribe({
+  //       next: (data) => {
+  //       }
+  //     })
+  //   }
+  // }
+
+  submit() {
+    const currentInvoice = this.invoice();
+
+    if (currentInvoice && currentInvoice.id) {
+      this.invoicesService.uploadToSiigo(currentInvoice.id).subscribe({
+        next: (data) => {
+          console.log('Invoice uploaded successfully:', data);
+        },
+        error: (err) => {
+          console.error('Error uploading invoice:', err);
+        }
+      });
+    } else {
+      console.error('No invoice available to upload');
+    }
+  }
+
 }
+
