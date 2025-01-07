@@ -30,11 +30,12 @@ export const routes: Routes = [
             path: 'dashboard',
             loadComponent: () => import('./views/dashboard-pages/dashboard/dashboard.component').then(m => m.DashboardComponent)
           },
-          
+
         ]
       },
       {
         path: 'invoice-detail/:id',
         component: InvoiceDetailComponent,
+        pathMatch: 'full'
       }
 ];
