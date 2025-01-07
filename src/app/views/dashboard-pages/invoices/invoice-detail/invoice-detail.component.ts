@@ -1,5 +1,4 @@
 import { Component, inject, Input, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Invoice } from '../../../../models/invoice.model';
 import { InvoicesService } from '../../../../services/invoices.service';
 import { CommonModule } from '@angular/common';
@@ -17,6 +16,9 @@ export class InvoiceDetailComponent {
   editMode = signal(false);
   invoice = signal<Invoice | null>(null);
   private invoicesService = inject(InvoicesService);
+  subtotal = signal(0);
+  iva = signal(0);
+  total = signal(0);
 
   async ngOnInit() {
     if (this.id !== undefined) {
@@ -24,6 +26,17 @@ export class InvoiceDetailComponent {
         this.invoicesService.getOneInvoice(this.id!).subscribe({
           next: (data) => {
             this.invoice.set(data);
+            data.salduInlineProducts.forEach((product) =>{
+              this.subtotal.update((currentSubtotal) => {
+                return currentSubtotal + product.taxedPrice;
+              })
+            })
+            data.salduInlineProducts.forEach((product) =>{
+              this.iva.update((currentIva) => {
+                return currentIva + product.taxedPrice*product.salduProduct.charges[0].taxDiscount.value;
+              })
+            })
+            this.total.set(this.subtotal() + this.iva());
             resolve();
           },
           error: (err) => {
@@ -34,6 +47,8 @@ export class InvoiceDetailComponent {
       });
     }
   }
+
+  
 
   toggleEditMode(event: Event) {
     event.preventDefault();

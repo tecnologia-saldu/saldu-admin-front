@@ -40,4 +40,11 @@ export class InvoicesService {
     });
     return this.http.post<Invoice>(`${this.apiUrl}/siigo/${id}`, { headers })
   }
+
+  updateInvoiceInfo(id: number, commission: number) {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.apiKey}`
+    });
+    return this.http.put<Invoice>(`${this.apiUrl}/${id}`, { commission }, { headers })
+  }
 }
