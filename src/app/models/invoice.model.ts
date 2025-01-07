@@ -39,6 +39,19 @@ export interface SalduProduct {
     siigoId: string;
     name: string;
     description: string;
+    charges: Charges[];
+}
+
+export interface Charges {
+    isActive: boolean;
+    taxDiscount: TaxDiscount;
+}
+
+export interface TaxDiscount {
+    siigoId: number;
+    category: string;
+    name: string;
+    value: number;
 }
 
 export interface PaymentOption {

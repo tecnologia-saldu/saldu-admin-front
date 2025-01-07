@@ -17,11 +17,11 @@
                 </thead>
                 <tbody>
                     @for(invoice of invoices; track $index) {
-                    <tr class="text-sm p-4 bg-white">
-                        <td class="p-4 border-b-2"><a [routerLink]="['/invoice-detail', invoice.id]" target="_blank">{{ invoice.id }}</a></td>
-                        <td class="p-4 border-b-2 text-center">{{ invoice.orderTotal }}</td>
-                        <td class="p-4 border-b-2">{{ invoice.taxedPrice }}</td>
-                        <td class="p-4 border-b-2 text-center">{{ invoice.createdAt }}</td>
+                    <tr [routerLink]="['/invoice-detail', invoice.id]" target="_blank" class="text-sm p-4 bg-white cursor-pointer">
+                        <td class="p-4 border-b-2">{{ invoice.orderId }}</td>
+                        <td class="p-4 border-b-2 text-center">{{ invoice.orderTotal | currency: '$': 'symbol':'1.0-0' }}</td>
+                        <td class="p-4 border-b-2">{{ invoice.taxedPrice | currency: '$': 'symbol':'1.0-0' }}</td>
+                        <td class="p-4 border-b-2 text-center">{{ invoice.createdAt.substring(0, 10) }}</td>
                         <td class="p-4 border-b-2">{{ invoice.siigoStatus }}</td>
                         <td class="p-4 border-b-2 text-center"><fa-icon [icon]="faPenToSquare"></fa-icon></td>
                         <td class="p-4 border-b-2"><input type="checkbox" [(ngModel)]="invoice.checkbox" (change)="checkboxChanged()"></td>

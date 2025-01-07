@@ -5,11 +5,12 @@ import { InvoicesService } from '../../../../services/invoices.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterLink } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-invoices-list',
   standalone: true,
-  imports: [FontAwesomeModule, RouterLink, ReactiveFormsModule, FormsModule],
+  imports: [FontAwesomeModule, RouterLink, ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './invoices-list.component.html',
   styleUrl: './invoices-list.component.css'
 })

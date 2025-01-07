@@ -2,11 +2,12 @@ import { Component, inject, Input, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Invoice } from '../../../../models/invoice.model';
 import { InvoicesService } from '../../../../services/invoices.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-invoice-detail',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './invoice-detail.component.html',
   styleUrl: './invoice-detail.component.css'
 })

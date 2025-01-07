@@ -48,10 +48,10 @@
                             <td class="w-1/2 align-top">
                                 <div class="text-sm text-bglight">
                                     <p class="font-bold">Saldu</p>
-                                    <p>NIT: 23456789</p>
-                                    <p>Dirección: Calle 222112</p>
-                                    <p>Telefono: 1231421412</p>
-                                    <p>Colombia</p>
+                                    <p>NIT: 901.698.658-1</p>
+                                    <p>Dirección: Carrera 59C Calle 79 - 35</p>
+                                    <p>Telefono: 3012302717</p>
+                                    <p>Barranquilla, Colombia</p>
                                 </div>
                             </td>
                             <td class="w-1/2 align-top text-right">
@@ -78,32 +78,30 @@
                         <tr>
                             <td class="border-b-2 border-main pb-3 pl-3 font-bold">#</td>
                             <td class="border-b-2 border-main pb-3 pl-2 font-bold">Descripción del producto</td>
-                            <td class="border-b-2 border-main pb-3 pl-2 text-right font-bold">Precio</td>
-                            <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold">Cantidad</td>
+                            <td class="border-b-2 border-main pb-3 pl-2 text-right font-bold">Cantidad</td>
                             <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold">IVA</td>
-                            <td class="border-b-2 border-main pb-3 pl-2 text-right font-bold">Subtotal</td>
-                            <td class="border-b-2 border-main pb-3 pl-2 pr-3 text-right font-bold">Subtotal + IVA
-                            </td>
+                            <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold">Vr. Unitario</td>
+                            <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold">Vr. Total</td>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="border-b py-3 pl-3">1.</td>
-                            <td class="border-b py-3 pl-2">s</td>
-                            <td class="border-b py-3 pl-2 text-right">$150.00</td>
-                            <td class="border-b py-3 pl-2 text-center">1</td>
-                            <td class="border-b py-3 pl-2 text-center">20%</td>
-                            <td class="border-b py-3 pl-2 text-right">$150.00</td>
-                            <td class="border-b py-3 pl-2 pr-3 text-right">$180.00</td>
-                        </tr>
+                        @for(invoiceProduct of invoice()?.salduInlineProducts; track $index ) {
+                            <tr>
+                                <td class="border-b py-3 pl-3"> {{ $index }}</td>
+                                <td class="border-b py-3 pl-2">{{ invoiceProduct.salduProduct.description }}</td>
+                                <td class="border-b py-3 pl-2 text-right">1</td>
+                                <td class="border-b py-3 pl-2 text-center">{{ invoiceProduct.salduProduct.charges[0].taxDiscount.value * 100 }}%</td>
+                                <td class="border-b py-3 pl-2 text-center">{{ invoiceProduct.taxedPrice | currency: '$': 'symbol':'1.0-0' }}</td>
+                                <td class="border-b py-3 pl-2 text-center">{{ invoiceProduct.taxedPrice*(1+invoiceProduct.salduProduct.charges[0].taxDiscount.value) | currency: '$': 'symbol':'1.0-0' }}</td>
+                            </tr>
+                        }
                         <tr>
                             <td class="border-b py-3 pl-3">2.</td>
                             <td class="border-b py-3 pl-2">Taxation consulting (hour)</td>
-                            <td class="border-b py-3 pl-2 text-right">$60.00</td>
-                            <td class="border-b py-3 pl-2 text-center">2</td>
-                            <td class="border-b py-3 pl-2 text-center">20%</td>
-                            <td class="border-b py-3 pl-2 text-right">$120.00</td>
-                            <td class="border-b py-3 pl-2 pr-3 text-right">$144.00</td>
+                            <td class="border-b py-3 pl-2 text-right">1</td>
+                            <td class="border-b py-3 pl-2 text-center">19%</td>
+                            <td class="border-b py-3 pl-2 text-center">$500</td>
+                            <td class="border-b py-3 pl-2 text-center">$200</td>
                         </tr>
                         <tr>
                             <td class="border-b py-3 pl-3">3.</td>
@@ -111,8 +109,7 @@
                             <td class="border-b py-3 pl-2 text-right">$50.00</td>
                             <td class="border-b py-3 pl-2 text-center">1</td>
                             <td class="border-b py-3 pl-2 text-center">20%</td>
-                            <td class="border-b py-3 pl-2 text-right">$50.00</td>
-                            <td class="border-b py-3 pl-2 pr-3 text-right">$60.00</td>
+                            <td class="border-b py-3 pl-2 text-center">$50.00</td>
                         </tr>
                         <tr>
                             <td colspan="7">
