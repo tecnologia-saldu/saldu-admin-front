@@ -6,8 +6,8 @@
                 <thead>
                     <tr>
                         <td class="p-4">Orden id</td>
-                        <td class="p-4 text-center">Total orden</td>
-                        <td class="p-4">Total a facturar</td>
+                        <td class="p-4 text-right">Total orden</td>
+                        <td class="p-4 text-right">Total a facturar</td>
                         <td class="p-4 text-center">Fecha de pedido</td>
                         <td class="p-4">Estado</td>
                         <td class="p-4 text-center">Editar</td>
@@ -20,9 +20,9 @@
                     <tr class="text-sm p-4 bg-white">
                         <td class="p-4 border-b-2"><a [routerLink]="['/invoice-detail', invoice.id]" target="_blank">{{
                                 invoice.orderId }}</a></td>
-                        <td class="p-4 border-b-2 text-center"><a [routerLink]="['/invoice-detail', invoice.id]"
+                        <td class="p-4 border-b-2 text-right"><a [routerLink]="['/invoice-detail', invoice.id]"
                                 target="_blank">{{ invoice.orderTotal | currency: '$': 'symbol':'1.0-0' }}</a></td>
-                        <td class="p-4 border-b-2"><a [routerLink]="['/invoice-detail', invoice.id]" target="_blank">{{
+                        <td class="p-4 border-b-2 text-right"><a [routerLink]="['/invoice-detail', invoice.id]" target="_blank">{{
                                 invoice.taxedPrice | currency: '$': 'symbol':'1.0-0' }}</a></td>
                         <td class="p-4 border-b-2 text-center"><a [routerLink]="['/invoice-detail', invoice.id]"
                                 target="_blank">{{ invoice.createdAt.substring(0, 10) }}</a></td>
@@ -37,6 +37,9 @@
             </table>
         </div>
     </div>
+    <!-- <div>
+        <pagination-controls (pageChange)="pageChange($event)" [(ngModel)]="currentPage"/>
+    </div> -->
     <div class="flex justify-end bottom">
         <button (click)="submit()" class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Facturar</button>
     </div>

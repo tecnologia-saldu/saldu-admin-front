@@ -2,10 +2,6 @@ import { inject, Injectable } from '@angular/core';
 import { Invoice } from '../models/invoice.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-interface StripeResponse {
-  data: Invoice[];
-}
-
 @Injectable({
   providedIn: 'root'
 })

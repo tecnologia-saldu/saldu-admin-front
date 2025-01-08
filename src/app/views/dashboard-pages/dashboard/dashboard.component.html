@@ -1,3 +1,27 @@
-<div>
-  <img src="/assets/dashboard.jpg" alt="">
-</div>
+<section  class="text-center">
+  <article class="place-items-center">
+    <img class="w-1/6 pt-4" src="/assets/LogoBT.png" alt="Logo Saldu Azul con Amarillo">
+  </article>
+  <article class="p-8">
+    <h1 class="text-2xl">Órdenes pendientes a facturar</h1>
+    <div class="place-items-center">
+      <table class="w-1/2">
+        <thead>
+          <tr>
+            <td class="p-4 text-left">Orden id</td>
+            <td class="p-4 text-right">Total orden</td>
+          </tr>
+        </thead>
+        <tbody>
+          @for(invoice of invoices; track $index) {
+            <tr class="bg-white p-4 text-sm">
+              <td class="p-4 border-b-2 text-left">{{ invoice.orderId }}</td>
+              <td class="p-4 border-b-2 text-right">{{ invoice.orderTotal | currency: '$': 'symbol': '1.0-0' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </article>
+  
+</section>

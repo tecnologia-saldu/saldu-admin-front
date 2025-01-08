@@ -1,26 +1,38 @@
 import { Component, inject } from '@angular/core';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { Invoice } from '../../../../models/invoice.model';
-import { InvoicesService } from '../../../../services/invoices.service';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterLink } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+
+import { Invoice } from '../../../../models/invoice.model';
+import { InvoicesService } from '../../../../services/invoices.service';
+
 
 @Component({
   selector: 'app-invoices-list',
   standalone: true,
-  imports: [FontAwesomeModule, RouterLink, ReactiveFormsModule, FormsModule, CommonModule],
+  imports: [FontAwesomeModule, RouterLink, ReactiveFormsModule, FormsModule, CommonModule, NgxPaginationModule],
   templateUrl: './invoices-list.component.html',
   styleUrl: './invoices-list.component.css'
 })
 export class InvoicesListComponent {
-  faPenToSquare = faPenToSquare;
-  selectAll = false;
-
   private invoicesService = inject(InvoicesService);
 
   invoices: Invoice[] = [];
+  faPenToSquare = faPenToSquare;
+  selectAll = false;
+  // pageSize = 10;
+  // currentPage = 1;
+  // items = this.getInvoices(this.currentPage - 1, this.pageSize); // Adjust for 0-based indexing
+
+  // pageChange(event: PageChangedEvent) {
+  //   this.currentPage = event.page;
+  //   this.items = this.getInvoices(this.currentPage - 1, this.pageSize);
+  // }
+  
 
   ngOnInit() {
     this.getInvoices();
