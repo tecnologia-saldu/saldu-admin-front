@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { NgxPaginationModule } from 'ngx-pagination';
+// import { NgxPaginationModule } from 'ngx-pagination';
 
 
 import { Invoice } from '../../../../models/invoice.model';
@@ -14,7 +14,7 @@ import { InvoicesService } from '../../../../services/invoices.service';
 @Component({
   selector: 'app-invoices-list',
   standalone: true,
-  imports: [FontAwesomeModule, RouterLink, ReactiveFormsModule, FormsModule, CommonModule, NgxPaginationModule],
+  imports: [FontAwesomeModule, RouterLink, ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './invoices-list.component.html',
   styleUrl: './invoices-list.component.css'
 })
