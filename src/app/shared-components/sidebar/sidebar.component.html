@@ -1,6 +1,6 @@
 <section class="bg-bg text-white flex flex-col justify-between sidebar">
     <ul class="pt-2">
-        <a routerLink="/dashboard" >
+        <a routerLink="/dashboard">
             <li class="py-4 px-8" [routerLinkActive]="['bg-bglight']">
                 <fa-icon [icon]="faChartLine"></fa-icon> Dashboard
             </li>
@@ -14,7 +14,8 @@
             </li>
             <cdk-accordion-item #item="cdkAccordionItem">
                 <a routerLink="/invoices">
-                    <li class="list-disc py-4 px-10" [routerLinkActive]="['bg-bglight']" [style.display]="item.expanded ? '' : 'none'">Ordenes pendientes
+                    <li class="list-disc py-4 px-10" [routerLinkActive]="['bg-bglight']"
+                        [style.display]="item.expanded ? '' : 'none'">Ordenes pendientes
                     </li>
                 </a>
             </cdk-accordion-item>
@@ -38,6 +39,5 @@
             </li>
         </a>
     </ul>
-    <button (click)="logout()" class="py-8 hover:text-yellow"><fa-icon [icon]="faRightFromBracket"></fa-icon> Log
-        out</button>
+    <button (click)="logout()" class="py-8 hover:text-yellow"><fa-icon [icon]="faRightFromBracket"></fa-icon> Log out</button>
 </section>

@@ -1,10 +1,10 @@
-<div>
+<div class="w-dvw">
     <div class="navbar"><app-navbar (toggle)="toggleSidebar()" /></div>
     <div class="main-container flex">
         <aside [class.hidden]="!isSidebarVisible" class="sidebar absolute top-auto left-0 z-10 max-w-sm w-full transition-transform duration-300 transform lg:static lg:block lg:w-1/5 h-full">
                 <app-sidebar/>
         </aside>
-        <div class="main w-full lg:w-4/5 bg-light">
+        <div class="main w-dvw bg-light">
             <router-outlet></router-outlet>
         </div>
     </div>

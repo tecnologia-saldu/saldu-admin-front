@@ -15,15 +15,15 @@ module.exports = {
         lightblue: '#31316d',
         lighttext: '#a1a1a6'
       },
-      container: {
-        screens : {
-          sm: '640px',
-          md: '768px',
-          lg: '1024px',
-          xl: '1024px',
-          '2xl': '1536px',
-        },
-      }
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        xxl: '1536px',
+        ultrawide: '2560',
+      },
+      
     },
   },
   plugins: [],

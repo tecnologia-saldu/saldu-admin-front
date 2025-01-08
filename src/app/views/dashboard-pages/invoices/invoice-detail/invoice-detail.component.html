@@ -1,166 +1,169 @@
-<section class="bg-bg">
-    <div class="max-w-screen-lg m-auto h-screen bg-white">
-        <div class="py-4">
-            <div class="px-14 md:py-6">
-                <table class="w-full border-collapse border-spacing-0">
-                    <tbody>
-                        <tr>
-                            <td class="w-full align-top">
-                                <div>
-                                    <img src="/assets/LogoBT.png" class="md:h-12 h-8" />
-                                </div>
-                            </td>
-
-                            <td class="align-top">
-                                <div class="text-sm">
-                                    <table class="border-collapse border-spacing-0">
-                                        <tbody>
-                                            <tr>
-                                                <td class="border-r pr-4">
-                                                    <div>
-                                                        <p class="whitespace-nowrap text-lighttext text-right">Fecha</p>
-                                                        <p class="whitespace-nowrap font-bold text-right">
-                                                            {{ invoice()?.updatedAt?.substring(0, 10) }}</p>
-                                                    </div>
-                                                </td>
-                                                <td class="pl-4">
-                                                    <div>
-                                                        <p class="whitespace-nowrap text-lighttext text-right">Orden Id
-                                                        </p>
-                                                        <p class="whitespace-nowrap font-bold text-main text-right">
-                                                            {{ invoice()?.orderId}}</p>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="bg-light px-14 py-6 text-sm">
-                <table class="w-full border-collapse border-spacing-0">
-                    <tbody>
-                        <tr>
-                            <td class="w-1/2 align-top">
-                                <div class="text-sm text-bglight">
-                                    <p class="font-bold">Saldu</p>
-                                    <p>NIT: 901.698.658-1</p>
-                                    <p>Dirección: Carrera 59C Calle 79 - 35</p>
-                                    <p>Telefono: 3012302717</p>
-                                    <p>Barranquilla, Colombia</p>
-                                </div>
-                            </td>
-                            <td class="w-1/2 align-top text-right">
-                                <div class="text-sm text-bglight">
-                                    @if(invoice()?.documentType == 'NIT') {
-                                    <p class="font-bold">{{ invoice()?.businessName }}</p>
-                                    } @else {
-                                    <p class="font-bold">{{ invoice()?.firstname }} {{ invoice()?.lastname }}</p>
-                                    }
-                                    <p>NIT: {{ invoice()?.document }}</p>
-                                    <p>Dirección: {{ invoice()?.address }}</p>
-                                    <p>Telefono: {{ invoice()?.phone }}</p>
-                                    <p>Email: {{ invoice()?.email }}</p>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="px-14 py-10 text-sm text-bg">
-                <table class="w-full border-collapse border-spacing-0">
-                    <thead class="">
-                        <tr>
-                            <td class="border-b-2 border-main pb-3 pl-3 font-bold">#</td>
-                            <td class="border-b-2 border-main pb-3 pl-2 font-bold">Descripción del producto</td>
-                            <td class="border-b-2 border-main pb-3 pl-2 text-right font-bold">Cantidad</td>
-                            <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold">IVA</td>
-                            <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold">Vr. Unitario</td>
-                            <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold">Vr. Total</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for(invoiceProduct of invoice()?.salduInlineProducts; track $index ) {
-                        <tr>
-                            <td class="border-b py-3 pl-3"> {{ $index + 1 }}</td>
-                            <td class="border-b py-3 pl-2">{{ invoiceProduct.salduProduct.description }}</td>
-                            <td class="border-b py-3 pl-2 text-right">1</td>
-                            <td class="border-b py-3 pl-2 text-center">{{
-                                invoiceProduct.salduProduct.charges[0].taxDiscount.value * 100 }}%</td>
-                            @if(editMode()) {
-                            <td class="border-b py-3 pl-2 text-center"><input class="border-2 text-center"
-                                    (input)="updateProductTaxedPrice($index, $event)"
-                                    [value]="[invoiceProduct.taxedPrice]" required></td>
-                            } @else {
-                            <td class="border-b py-3 pl-2 text-center">{{ invoiceProduct.taxedPrice | currency: '$':
-                                'symbol':'1.0-0' }}</td>
+<section class="bg-bg h-dvh">
+    <div class="max-w-screen-lg m-auto bg-white h-dvh">
+        <div class="py-4 h-dvh flex flex-col justify-between">
+            <article>
+                <div class="px-14 md:py-6">
+                    <table class="w-full border-collapse border-spacing-0">
+                        <tbody>
+                            <tr>
+                                <td class="w-full align-top">
+                                    <div>
+                                        <img src="/assets/LogoBT.png" class="md:h-12 h-8" />
+                                    </div>
+                                </td>
+    
+                                <td class="align-top">
+                                    <div class="text-sm">
+                                        <table class="border-collapse border-spacing-0">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="border-r pr-4">
+                                                        <div>
+                                                            <p class="whitespace-nowrap text-lighttext text-right">Fecha</p>
+                                                            <p class="whitespace-nowrap font-bold text-right">
+                                                                {{ invoice()?.updatedAt?.substring(0, 10) }}</p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="pl-4">
+                                                        <div>
+                                                            <p class="whitespace-nowrap text-lighttext text-right">Orden Id
+                                                            </p>
+                                                            <p class="whitespace-nowrap font-bold text-main text-right">
+                                                                {{ invoice()?.orderId}}</p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+                <div class="bg-light px-14 py-6 text-sm">
+                    <table class="w-full border-collapse border-spacing-0">
+                        <tbody>
+                            <tr>
+                                <td class="w-1/2 align-top">
+                                    <div class="text-sm text-bglight">
+                                        <p class="font-bold">Saldu</p>
+                                        <p>NIT: 901.698.658-1</p>
+                                        <p>Dirección: Carrera 59C Calle 79 - 35</p>
+                                        <p>Telefono: 3012302717</p>
+                                        <p>Barranquilla, Colombia</p>
+                                    </div>
+                                </td>
+                                <td class="w-1/2 align-top text-right">
+                                    <div class="text-sm text-bglight">
+                                        @if(invoice()?.documentType == 'NIT') {
+                                        <p class="font-bold">{{ invoice()?.businessName }}</p>
+                                        } @else {
+                                        <p class="font-bold">{{ invoice()?.firstname }} {{ invoice()?.lastname }}</p>
+                                        }
+                                        <p>NIT: {{ invoice()?.document }}</p>
+                                        <p>Dirección: {{ invoice()?.address }}</p>
+                                        <p>Telefono: {{ invoice()?.phone }}</p>
+                                        <p>Email: {{ invoice()?.email }}</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+                <div class="px-14 py-10 text-sm text-bg">
+                    <table class="w-full border-collapse border-spacing-0">
+                        <thead class="">
+                            <tr>
+                                <td class="border-b-2 border-main pb-3 pl-3 font-bold">#</td>
+                                <td class="border-b-2 border-main pb-3 pl-2 font-bold">Descripción del producto</td>
+                                <td class="border-b-2 border-main pb-3 pl-2 text-right font-bold">Cantidad</td>
+                                <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold">IVA</td>
+                                <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold">Vr. Unitario</td>
+                                <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold">Vr. Total</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for(invoiceProduct of invoice()?.salduInlineProducts; track $index ) {
+                            <tr>
+                                <td class="border-b py-3 pl-3"> {{ $index + 1 }}</td>
+                                <td class="border-b py-3 pl-2">{{ invoiceProduct.salduProduct.description }}</td>
+                                <td class="border-b py-3 pl-2 text-right">1</td>
+                                <td class="border-b py-3 pl-2 text-center">{{
+                                    invoiceProduct.salduProduct.charges[0].taxDiscount.value * 100 }}%</td>
+                                @if(editMode()) {
+                                <td class="border-b py-3 pl-2 text-center"><input class="border-2 text-center"
+                                        (input)="updateProductTaxedPrice($index, $event)"
+                                        [value]="[invoiceProduct.taxedPrice]" required></td>
+                                } @else {
+                                <td class="border-b py-3 pl-2 text-right">{{ invoiceProduct.taxedPrice | currency: '$':
+                                    'symbol':'1.0-0' }}</td>
+                                }
+    
+                                <td class="border-b py-3 pl-2 text-right">{{
+                                    invoiceProduct.taxedPrice*(1+invoiceProduct.salduProduct.charges[0].taxDiscount.value) |
+                                    currency: '$': 'symbol':'1.0-0' }}</td>
+                            </tr>
                             }
 
-                            <td class="border-b py-3 pl-2 text-center">{{
-                                invoiceProduct.taxedPrice*(1+invoiceProduct.salduProduct.charges[0].taxDiscount.value) |
-                                currency: '$': 'symbol':'1.0-0' }}</td>
-                        </tr>
-                        }
-                        <td colspan="7">
-                            <table class="w-full border-collapse border-spacing-0">
-                                <tbody>
-                                    <tr>
-                                        <td class="w-full"></td>
-                                        <td>
-                                            <table class="w-full border-collapse border-spacing-0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-b p-3">
-                                                            <div class="whitespace-nowrap text-lighttext">SubTotal:
-                                                            </div>
-                                                        </td>
-                                                        <td class="border-b p-3 text-right">
-                                                            <div class="whitespace-nowrap font-bold text-main">
-                                                                {{ subtotal() |
-                                                                currency: '$': 'symbol':'1.0-0' }}
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="p-3">
-                                                            <div class="whitespace-nowrap text-lighttext">IVA:
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-3 text-right">
-                                                            <div class="whitespace-nowrap font-bold text-main">{{ iva()
-                                                                |
-                                                                currency: '$': 'symbol':'1.0-0' }}
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="bg-blue">
-                                                        <td class="bg-main p-3">
-                                                            <div class="whitespace-nowrap font-bold text-white">
-                                                                Total:
-                                                            </div>
-                                                        </td>
-                                                        <td class="bg-main p-3 text-right">
-                                                            <div class="whitespace-nowrap font-bold text-white">
-                                                                {{ total() |
-                                                                currency: '$': 'symbol':'1.0-0' }}
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tbody>
-                </table>
-            </div>
+                            <td colspan="7">
+                                <table class="w-full border-collapse border-spacing-0">
+                                    <tbody>
+                                        <tr>
+                                            <td class="w-full"></td>
+                                            <td>
+                                                <table class="w-full border-collapse border-spacing-0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="border-b p-3">
+                                                                <div class="whitespace-nowrap text-lighttext">SubTotal:
+                                                                </div>
+                                                            </td>
+                                                            <td class="border-b p-3 text-right">
+                                                                <div class="whitespace-nowrap font-bold text-main">
+                                                                    {{ subtotal() |
+                                                                    currency: '$': 'symbol':'1.0-0' }}
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="p-3">
+                                                                <div class="whitespace-nowrap text-lighttext">IVA:
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-3 text-right">
+                                                                <div class="whitespace-nowrap font-bold text-main">{{ iva()
+                                                                    |
+                                                                    currency: '$': 'symbol':'1.0-0' }}
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="bg-blue">
+                                                            <td class="bg-main p-3">
+                                                                <div class="whitespace-nowrap font-bold text-white">
+                                                                    Total:
+                                                                </div>
+                                                            </td>
+                                                            <td class="bg-main p-3 text-right">
+                                                                <div class="whitespace-nowrap font-bold text-white">
+                                                                    {{ total() |
+                                                                    currency: '$': 'symbol':'1.0-0' }}
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
 
             <!-- <div class="px-14 text-sm text-bg">
             <p class="text-main font-bold">PAYMENT DETAILS</p>
@@ -184,7 +187,7 @@
             <span class="text-slate-300 px-2">|</span>
             +1-202-555-0106
         </footer>  -->
-            <div class="flex justify-end mt-28 pr-10 gap-4">
+            <article class="flex justify-end bottom-full mt-28 pr-10 gap-4">
                 @if(editMode()) {
                 <button (click)="updateInvoiceInfo($event)"
                     class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Guardar</button>
@@ -195,7 +198,7 @@
                 }
                 <button (click)="submit()"
                     class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Facturar</button>
-            </div>
+            </article>
         </div>
     </div>
 </section>
