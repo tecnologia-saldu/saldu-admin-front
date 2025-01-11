@@ -9,7 +9,7 @@
         </select>
         <app-button>Descargar listado</app-button>
     </div>
-    <div>
+    <cdk-virtual-scroll-viewport itemSize="50">
         <table class="w-full border-collapse border-spacing-0">
             <thead>
                 <tr>
@@ -29,5 +29,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </cdk-virtual-scroll-viewport>
 </section>

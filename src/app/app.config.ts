@@ -6,6 +6,7 @@ import { routes } from './app.routes';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { uploadInterceptor } from './shared-components/modals/upload.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
@@ -17,5 +18,5 @@ export const appConfig: ApplicationConfig = {
     useClass: uploadInterceptor,
     multi: true,
   },
-  importProvidersFrom(NgxSpinnerModule.forRoot({ type: 'line-spin-clockwise-fade' }), BrowserModule, BrowserAnimationsModule)]
+  importProvidersFrom(NgxSpinnerModule.forRoot({ type: 'line-spin-clockwise-fade' }), BrowserModule, BrowserAnimationsModule, ScrollingModule)]
 };

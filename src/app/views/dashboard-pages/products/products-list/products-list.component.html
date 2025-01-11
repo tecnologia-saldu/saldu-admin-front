@@ -1,8 +1,8 @@
-<section class="text-bglight p-1 md:p-8">
+<section class="text-bglight pt-8 pl-8" cdkScrollable>
     <h1 class="p-2">Listado de productos</h1>
-    <div>
-        <table class="w-full border-collapse border-spacing-0">
-            <thead>
+    <cdk-virtual-scroll-viewport [itemSize]="50" minBufferPx=200 maxBufferPx=400 ViewportRuler class="viewport">
+        <table class="w-full border-collapse border-spacing-0 pr-2" cdkScrollable>
+            <thead cdkScrollable>
                 <tr>
                     <td class="p-2 md:p-4">SKU</td>
                     <td class="p-2 md:p-4">Descripción</td>
@@ -13,56 +13,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="text-sm bg-white md:p-4">
-                    <td class="p-2 border-b-2 break-all md:p-4 md:max-w-40">1298312749</td>
-                    <td class="p-2 border-b-2 max-w-40 break-normal md:p-4">Tubo PVC</td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><img
-                            src="https://casaandina.com.co/media/catalog/product/cache/41a7221ab6abf5cdb1e2413a96985b18/1/9/190_1.jpg"
-                            alt="" class="w-32 mx-auto">
-                        <input type="radio" name="img-selected" id="" class="">
-                    </td>
-                    <td class="p-2 border-b-2 text-center md:p-4 "><img
-                            src="https://tuvalrep.com.co/wp-content/uploads/2022/03/Tuberia-PVC-P.webp" alt=""
+                <tr *cdkVirtualFor="let product of products; let i = index" class="text-sm bg-white md:p-4">
+                    <td class="p-2 border-b-2 break-all md:p-4 md:max-w-40">{{ product.sku}}</td>
+                    <td class="p-2 border-b-2 max-w-40 break-normal md:p-4">{{ product.description }}</td>
+                    <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage1" alt=""
                             class="w-32 mx-auto">
                         <input type="radio" name="img-selected" id="" class="">
                     </td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><img
-                            src="https://casaandina.com.co/media/catalog/product/cache/41a7221ab6abf5cdb1e2413a96985b18/1/9/190_1.jpg"
-                            alt="" class="w-32 mx-auto">
+                    <td class="p-2 border-b-2 text-center md:p-4 "><img [src]="product.urlImage2" alt=""
+                            class="w-32 mx-auto">
                         <input type="radio" name="img-selected" id="" class="">
                     </td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><img
-                            src="https://tuvalrep.com.co/wp-content/uploads/2022/03/Tuberia-PVC-P.webp" alt=""
+                    <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage3" alt=""
+                            class="w-32 mx-auto">
+                        <input type="radio" name="img-selected" id="" class="">
+                    </td>
+                    <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage4" alt=""
                             class="w-32 mx-auto">
                         <input type="radio" name="img-selected" id="" class="">
                     </td>
                     <td class="p-2 border-b-2 text-center md:p-4"><app-button>Guardar</app-button></td>
                 </tr>
-                <tr class="text-sm bg-white md:p-4">
-                    <td class="p-2 border-b-2 md:p-4">1298312749</td>
-                    <td class="p-2 border-b-2 max-w-40 break-normal md:p-4">Pack Tubo PVC Presion 1/2" x 3 Metros RDE 9 x 6 Unidades Gerfor</td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><img
-                            src="https://casaandina.com.co/media/catalog/product/cache/41a7221ab6abf5cdb1e2413a96985b18/1/9/190_1.jpg"
-                            alt="" class="w-32 mx-auto">
-                        <input type="radio" name="img-selected" id="" class="">
-                    </td>
-                    <td class="p-2 border-b-2 text-center md:p-4 "><img
-                            src="https://tuvalrep.com.co/wp-content/uploads/2022/03/Tuberia-PVC-P.webp" alt=""
-                            class="w-32 mx-auto">
-                        <input type="radio" name="img-selected" id="" class="">
-                    </td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><img
-                            src="https://casaandina.com.co/media/catalog/product/cache/41a7221ab6abf5cdb1e2413a96985b18/1/9/190_1.jpg"
-                            alt="" class="w-32 mx-auto">
-                        <input type="radio" name="img-selected" id="" class="">
-                    </td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><img
-                            src="https://tuvalrep.com.co/wp-content/uploads/2022/03/Tuberia-PVC-P.webp" alt=""
-                            class="w-32 mx-auto">
-                        <input type="radio" name="img-selected" id="" class="">
-                    </td>
-                </tr>
             </tbody>
         </table>
-    </div>
+    </cdk-virtual-scroll-viewport>
 </section>
