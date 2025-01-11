@@ -1,19 +1,21 @@
-<section class="text-bglight p-1 md:p-8">
+<section class="text-bglight pt-8 pl-8" cdkScrollable>
     <h1 class="p-2">Listado de productos</h1>
     <div class="flex justify-between pt-4">
         <form [formGroup]="formProvider">
-            <select name="Seleccione un proveedor" formControlName="selectProvider" class="p-2 border-b-2 bg-light max-w-min">
+            <select name="Seleccione un proveedor" formControlName="selectProvider"
+                class="p-2 border-b-2 bg-light max-w-min">
                 <option value="default" selected="selected">Seleccione un proveedor</option>
                 @for(user of users; track $index) {
-                    <option [value]="user.id_wooCommerce">{{ user.email }}</option>
+                <option [value]="user.id_wooCommerce">{{ user.email }}</option>
                 }
-            </select>
+            </select><fa-icon class="pl-8" (click)="getProducts(formProvider.get('selectProvider')?.value)"
+                [icon]="faMagnifyingGlass"></fa-icon>
         </form>
-        <app-button>Descargar listado</app-button>
+        <app-button (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value)">Descargar listado</app-button>
     </div>
-    <cdk-virtual-scroll-viewport itemSize="50">
-        <table class="w-full border-collapse border-spacing-0">
-            <thead>
+    <cdk-virtual-scroll-viewport itemSize="50" minBufferPx=200 maxBufferPx=400 ViewportRuler class="viewport">
+        <table class="w-full border-collapse border-spacing-0" cdkScrollable>
+            <thead cdkScrollable>
                 <tr>
                     <td class="p-2 md:p-4">SKU</td>
                     <td class="p-2 md:p-4">Descripción</td>
@@ -21,12 +23,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="text-sm bg-white md:p-4">
-                    <td class="p-2 border-b-2 break-all md:p-4">1298312749</td>
-                    <td class="p-2 border-b-2 max-w-40 break-normal md:p-4">Tubo PVC</td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><img
-                            src="https://casaandina.com.co/media/catalog/product/cache/41a7221ab6abf5cdb1e2413a96985b18/1/9/190_1.jpg"
-                            alt="" class="w-32 mx-auto">
+                <tr *cdkVirtualFor="let product of products; let i = index" class="text-sm bg-white md:p-4">
+                    <td class="p-2 border-b-2 break-all md:p-4 md:max-w-40">{{ product.sku}}</td>
+                    <td class="p-2 border-b-2 max-w-40 break-normal md:p-4">{{ product.description }}</td>
+                    <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage1" class="w-36 mx-auto">
                     </td>
                 </tr>
             </tbody>

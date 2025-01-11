@@ -34,7 +34,11 @@ export class ProductsService {
   }
 
   saveProductImage(productId: string, urlImage: string) {
-    return this.http.put<Product>(`${this.apiUrl}/${productId}`, { imagesUrl: urlImage })
+    return this.http.put<Product>(`${this.apiUrl}/${productId}`, { imagesUrl: urlImage });
+  }
+
+  downloadProductsCsv(providerId: number) {
+    return this.http.get(`${this.apiUrl}/${providerId.toString()}/csv`, { responseType: 'blob'});
   }
 
 }

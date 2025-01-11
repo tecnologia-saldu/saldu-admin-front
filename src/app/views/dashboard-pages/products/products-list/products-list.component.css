@@ -1,3 +1,7 @@
  .viewport {
     height: 82dvh;
 }
+
+img {
+    aspect-ratio: 1/1;
+}

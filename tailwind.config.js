@@ -6,13 +6,16 @@ module.exports = {
     extend: {
       colors: {
         success: '#295C29',
+        lightsuccess: '#51ac51',
         danger: '#381616',
+        lightdanger: '#c86868',
         light: '#f1f1f1',
         yellow: '#e8e454',
         bg: '#1a1a1d',
         bglight: '#2f2f2f',
         blue: '#161638',
-        lightblue: '#31316d',
+        lightblue: '#9d9dcd',
+        mediumblue: '#31316d',
         lighttext: '#a1a1a6'
       },
       screens: {
