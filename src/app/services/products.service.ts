@@ -13,37 +13,28 @@ export class ProductsService {
 
   constructor() { }
 
-  fileUpload(providerId: number) {
-    return this.http.post<UploadResponse>(`${this.apiUrl}/${providerId}`, '');
+  fileUpload(providerId: number, file: File | null) {
+    const formData = new FormData();
+    formData.append('providerId', providerId.toString());
+    if(file) {
+      formData.append('file', file)
+    };
+    return this.http.post<UploadResponse>(`${this.apiUrl}/massive-upload/${providerId}`, formData);
   }
 
   getProducts(providerId?: number, uploadStatus?: string) {
     let params = new HttpParams();
-
-    // Agregar providerId si se pasa
     if (providerId !== undefined) {
       params = params.append('providerId', providerId.toString());
     }
-
-    // Agregar uploadStatus si se pasa
     if (uploadStatus) {
       params = params.append('uploadStatus', uploadStatus);
     }
-
-    // Realizar la solicitud GET con los parámetros
     return this.http.get<Product[]>(this.apiUrl, { params });
   }
 
-  // getOneInvoice(id: string) {
-  //   return this.http.get<Invoice>(`${this.apiUrl}/${id}`);
-  // }
-
-  // uploadToSiigo(id: number) {
-  //   return this.http.post<Invoice>(`${this.apiUrl}/siigo/${id}`, '')
-  // }
-
-  // updateInvoiceInfo(id: number, commission: number) {
-  //   return this.http.put<Invoice>(`${this.apiUrl}/${id}`, { commission })
-  // }
+  saveProductImage(productId: string, urlImage: string) {
+    return this.http.put<Product>(`${this.apiUrl}/${productId}`, { imagesUrl: urlImage })
+  }
 
 }

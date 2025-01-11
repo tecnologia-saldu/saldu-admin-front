@@ -3,19 +3,30 @@
     <article class="flex flex-col justify-center mt-8 items-center gap-4">
         <div class="bg-white max-w-max place-items-center shadow-lg p-8">
             <div class="pt-2 basis-1/4">
-                <select name="Seleccione un proveedor" id="" class="p-2 border-b-2">
-                    <option value="">Seleccione un proveedor</option>
-                    <option value="">Proveedor 1</option>
-                    <option value="">Proveedor 2</option>
-                    <option value="">Proveedor 3</option>
-                </select>
+                <form [formGroup]="formProvider">
+                    <select name="Seleccione un proveedor" formControlName="selectProvider" class="p-2 border-b-2">
+                        <option value="default" selected="selected">Seleccione un proveedor</option>
+                        @for (user of users; track $index ) {
+                        <option [value]="user.id_wooCommerce">{{ user.email }}</option>
+                        }
+                    </select>
+                </form>
             </div>
             <div class="p-4">
-                <input accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" type="file" name="" id="">
+                <input
+                    accept=".doc,.docx,.xml, .csv, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    type="file" name="file" accept=".csv" (change)="onFileSelected($event)">
             </div>
             <div class="p-4">
-                <app-button routerLink="/products-list">Subir archivo</app-button>
+                <app-button (click)="fileUpload(formProvider.get('selectProvider')?.value)">Subir archivo</app-button>
             </div>
         </div>
+        @if(response) {
+            <div>
+                <h1>Total {{ response.total }}</h1>
+                <h1>Procesados {{ response.processed }}</h1>
+                <h1>Rechazados {{ response.rejected }}</h1>
+            </div>
+        }
     </article>
 </section>

@@ -38,9 +38,16 @@
                 </a>
             </cdk-accordion-item>
             <cdk-accordion-item #itemProducts="cdkAccordionItem">
+                <a routerLink="/products-list">
+                    <li class="py-4 px-10" [routerLinkActive]="['bg-bglight']"
+                        [style.display]="itemProducts.expanded ? '' : 'none'"> Listado de productos sin imagen
+                    </li>
+                </a>
+            </cdk-accordion-item>
+            <cdk-accordion-item #itemProducts="cdkAccordionItem">
                 <a routerLink="/provider-products">
                     <li class="py-4 px-10" [routerLinkActive]="['bg-bglight']"
-                        [style.display]="itemProducts.expanded ? '' : 'none'"> Listado de productos
+                        [style.display]="itemProducts.expanded ? '' : 'none'"> Listado de productos con imagen
                     </li>
                 </a>
             </cdk-accordion-item>

@@ -18,21 +18,21 @@
                     <td class="p-2 border-b-2 max-w-40 break-normal md:p-4">{{ product.description }}</td>
                     <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage1" alt=""
                             class="w-32 mx-auto">
-                        <input type="radio"  [name]="product.sku" id="" class="">
+                        <input type="radio" (change)="onImageSelect(product.sku, product.urlImage1)" [value]="product.urlImage1" [name]="product.sku" id="1" class="">
                     </td>
                     <td class="p-2 border-b-2 text-center md:p-4 "><img [src]="product.urlImage2" alt=""
                             class="w-32 mx-auto">
-                        <input type="radio"  [name]="product.sku" id="" class="">
+                        <input type="radio" (change)="onImageSelect(product.sku, product.urlImage2)" [value]="product.urlImage2" [name]="product.sku" id="2" class="">
                     </td>
                     <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage3" alt=""
                             class="w-32 mx-auto">
-                        <input type="radio"  [name]="product.sku" id="" class="">
+                        <input type="radio" (change)="onImageSelect(product.sku, product.urlImage3)" [value]="product.urlImage3"  [name]="product.sku" id="3" class="">
                     </td>
                     <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage4" alt=""
                             class="w-32 mx-auto">
-                        <input type="radio"  [name]="product.sku" id="" class="">
+                        <input type="radio" (change)="onImageSelect(product.sku, product.urlImage4)" [value]="product.urlImage4" [name]="product.sku" id="4" class="">
                     </td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><app-button>Guardar</app-button></td>
+                    <td class="p-2 border-b-2 text-center md:p-4"><app-button (click)="saveImage(product.id, selectedImage[product.sku])" >Guardar</app-button></td>
                 </tr>
             </tbody>
         </table>
