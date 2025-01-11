@@ -2,13 +2,13 @@
     <div class="max-w-screen-lg m-auto bg-white h-dvh">
         <div class="py-4 h-dvh flex flex-col justify-between">
             <article>
-                <div class="px-14 md:py-6">
+                <div class="p-4 md:px-14 md:py-6">
                     <table class="w-full border-collapse border-spacing-0">
                         <tbody>
                             <tr>
                                 <td class="w-full align-top">
                                     <div>
-                                        <img src="/assets/LogoBT.png" class="md:h-12 h-8" />
+                                        <img src="/assets/LogoBT.png" class="h-8 md:h-12" />
                                     </div>
                                 </td>
     
@@ -42,7 +42,7 @@
                     </table>
                 </div>
     
-                <div class="bg-light px-14 py-6 text-sm">
+                <div class="bg-light text-sm p-4 md:px-14 md:py-6">
                     <table class="w-full border-collapse border-spacing-0">
                         <tbody>
                             <tr>
@@ -73,9 +73,9 @@
                     </table>
                 </div>
     
-                <div class="px-14 py-10 text-sm text-bg">
+                <div class="py-4 pr-4 pl-2 text-sm text-bg md:px-14 md:py-10">
                     <table class="w-full border-collapse border-spacing-0">
-                        <thead class="">
+                        <thead>
                             <tr>
                                 <td class="border-b-2 border-main pb-3 pl-3 font-bold">#</td>
                                 <td class="border-b-2 border-main pb-3 pl-2 font-bold">Descripción del producto</td>
@@ -90,11 +90,11 @@
                             <tr>
                                 <td class="border-b py-3 pl-3"> {{ $index + 1 }}</td>
                                 <td class="border-b py-3 pl-2">{{ invoiceProduct.salduProduct.description }}</td>
-                                <td class="border-b py-3 pl-2 text-right">1</td>
+                                <td class="border-b py-3 max-w-2 text-right">1</td>
                                 <td class="border-b py-3 pl-2 text-center">{{
                                     invoiceProduct.salduProduct.charges[0].taxDiscount.value * 100 }}%</td>
                                 @if(editMode()) {
-                                <td class="border-b py-3 pl-2 text-center"><input class="border-2 text-center"
+                                <td class="border-b py-3 pl-2 text-center "><input class="border-2 text-center max-w-20"
                                         (input)="updateProductTaxedPrice($index, $event)"
                                         [value]="[invoiceProduct.taxedPrice]" required></td>
                                 } @else {
@@ -187,17 +187,15 @@
             <span class="text-slate-300 px-2">|</span>
             +1-202-555-0106
         </footer>  -->
-            <article class="flex justify-end bottom-full mt-28 pr-10 gap-4">
+            <article class="flex justify-end bottom-full mt-12 pr-2 gap-4 md:mt-28 md:pr-10">
                 @if(editMode()) {
-                <button (click)="updateInvoiceInfo($event)"
-                    class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Guardar</button>
+                <app-button (click)="updateInvoiceInfo($event)">Guardar</app-button>
+                    
 
                 } @else {
-                <button (click)="toggleEditMode($event)"
-                    class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Editar</button>
+                <app-button (click)="toggleEditMode($event)">Editar</app-button>
                 }
-                <button (click)="submit()"
-                    class="bg-blue text-sm font-bold text-white p-4 hover:bg-lightblue">Facturar</button>
+                <app-button (click)="submit()">Facturar</app-button>
             </article>
         </div>
     </div>

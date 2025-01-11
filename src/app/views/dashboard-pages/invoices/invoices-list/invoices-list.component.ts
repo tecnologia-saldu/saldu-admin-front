@@ -9,12 +9,13 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 import { Invoice } from '../../../../models/invoice.model';
 import { InvoicesService } from '../../../../services/invoices.service';
+import { ButtonComponent } from '../../../../shared-components/button/button.component';
 
 
 @Component({
   selector: 'app-invoices-list',
   standalone: true,
-  imports: [FontAwesomeModule, RouterLink, ReactiveFormsModule, FormsModule, CommonModule],
+  imports: [FontAwesomeModule, RouterLink, ReactiveFormsModule, FormsModule, CommonModule, ButtonComponent],
   templateUrl: './invoices-list.component.html',
   styleUrl: './invoices-list.component.css'
 })

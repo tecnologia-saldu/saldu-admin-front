@@ -30,7 +30,18 @@ export const routes: Routes = [
             path: 'dashboard',
             loadComponent: () => import('./views/dashboard-pages/dashboard/dashboard.component').then(m => m.DashboardComponent)
           },
-
+          {
+            path: 'upload-products',
+            loadComponent: () => import('./views/dashboard-pages/products/upload-products/upload-products.component').then(m => m.UploadProductsComponent)
+          },
+          {
+            path: 'products-list',
+            loadComponent: () => import('./views/dashboard-pages/products/products-list/products-list.component').then(m => m.ProductsListComponent)
+          },
+          {
+            path: 'provider-products',
+            loadComponent: () => import('./views/dashboard-pages/products/provider-products/provider-products.component').then(m => m.ProviderProductsComponent)
+          },
         ]
       },
       {

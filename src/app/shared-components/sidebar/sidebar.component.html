@@ -6,29 +6,47 @@
             </li>
         </a>
         <cdk-accordion>
-            <li (click)="item.toggle()" class="py-4 px-8 cursor-pointer flex items-center justify-between">
+            <li (click)="itemInvoices.toggle()" class="py-4 px-8 cursor-pointer flex items-center justify-between">
                 <div>
                     <fa-icon [icon]="faFileLines"></fa-icon> Facturación
                 </div>
-                <fa-icon [icon]="faChevronDown" [class.rotate-180]="item.expanded"></fa-icon>
+                <fa-icon [icon]="faChevronDown" [class.rotate-180]="itemInvoices.expanded"></fa-icon>
             </li>
-            <cdk-accordion-item #item="cdkAccordionItem">
+            <cdk-accordion-item #itemInvoices="cdkAccordionItem">
                 <a routerLink="/invoices">
-                    <li class="list-disc py-4 px-10" [routerLinkActive]="['bg-bglight']"
-                        [style.display]="item.expanded ? '' : 'none'">Ordenes pendientes
+                    <li class="py-4 px-10" [routerLinkActive]="['bg-bglight']"
+                        [style.display]="itemInvoices.expanded ? '' : 'none'"> Órdenes pendientes
                     </li>
                 </a>
             </cdk-accordion-item>
             <!-- <cdk-accordion-item #item="cdkAccordionItem">
-                <li class="list-disc py-4 px-10" [style.display]="item.expanded ? '' : 'none'">Ordenes facturadas</li>
+                <li class="py-4 px-10" [style.display]="item.expanded ? '' : 'none'">Ordenes facturadas</li>
             </cdk-accordion-item> -->
         </cdk-accordion>
-        <!-- <a href="#">
-            <li class="py-4 px-8">
-                <fa-icon [icon]="faList"></fa-icon> Mis Productos
+        <cdk-accordion>
+            <li (click)="itemProducts.toggle()" class="py-4 px-8 cursor-pointer flex items-center justify-between">
+                <div>
+                    <fa-icon [icon]="faList"></fa-icon> Productos
+                </div>
+                <fa-icon [icon]="faChevronDown" [class.rotate-180]="itemProducts.expanded"></fa-icon>
             </li>
-        </a>
-        <a href="#">
+            <cdk-accordion-item #itemProducts="cdkAccordionItem">
+                <a routerLink="/upload-products">
+                    <li class="py-4 px-10" [routerLinkActive]="['bg-bglight']"
+                        [style.display]="itemProducts.expanded ? '' : 'none'"> Carga de productos
+                    </li>
+                </a>
+            </cdk-accordion-item>
+            <cdk-accordion-item #itemProducts="cdkAccordionItem">
+                <a routerLink="/provider-products">
+                    <li class="py-4 px-10" [routerLinkActive]="['bg-bglight']"
+                        [style.display]="itemProducts.expanded ? '' : 'none'"> Listado de productos
+                    </li>
+                </a>
+            </cdk-accordion-item>
+        </cdk-accordion>
+
+        <!-- <a href="#">
             <li class="py-4 px-8">
                 <fa-icon [icon]="faDolly"></fa-icon> Mis Órdenes
             </li>

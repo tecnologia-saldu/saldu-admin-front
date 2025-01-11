@@ -2,10 +2,6 @@ li:hover {
     background-color: #2f2f2f;
 }
 
-section {
-    height: calc(100vh - 68px);
-}
-
 .sidebar.hidden {
     transform: translateX(-100%);
 }

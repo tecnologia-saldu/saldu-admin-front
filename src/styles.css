@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h1 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+section {
+    height: calc(100vh - 68px);
+}

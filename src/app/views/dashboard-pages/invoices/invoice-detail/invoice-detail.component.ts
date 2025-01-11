@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { Invoice } from '../../../../models/invoice.model';
 import { InvoicesService } from '../../../../services/invoices.service';
+import { ButtonComponent } from '../../../../shared-components/button/button.component';
 
 @Component({
   selector: 'app-invoice-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './invoice-detail.component.html',
   styleUrl: './invoice-detail.component.css'
 })
@@ -101,6 +102,12 @@ export class InvoiceDetailComponent {
       console.error('No invoice available to upload');
     }
   }
+
+
+  constructor(
+    ) {}
+  
+    
 
 }
 

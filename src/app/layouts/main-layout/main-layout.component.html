@@ -1,11 +1,12 @@
 <div class="w-dvw">
     <div class="navbar"><app-navbar (toggle)="toggleSidebar()" /></div>
-    <div class="main-container flex">
-        <aside [class.hidden]="!isSidebarVisible" class="sidebar absolute top-auto left-0 z-10 max-w-sm w-full transition-transform duration-300 transform lg:static lg:block lg:w-1/5 h-full">
+    <div class="main-container flex bg-light">
+        <aside [class.open]="!isSidebarVisible" class="sidebar absolute top-auto left-0 z-10 max-w-sm w-full transition-transform duration-300 transform lg:static lg:block lg:w-1/5 h-full ">
                 <app-sidebar/>
         </aside>
-        <div class="main w-dvw bg-light">
-            <router-outlet></router-outlet>
+        <div class="main w-dvw bg-light relative">
+            <ngx-spinner color="#e8e454" [fullScreen] = "false"><p class="text-2xl text-white">Cargando...</p></ngx-spinner>
+            <router-outlet (click)="toggleSidebar()"></router-outlet>
         </div>
     </div>
 </div>
