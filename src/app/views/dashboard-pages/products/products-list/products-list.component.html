@@ -18,19 +18,19 @@
                     <td class="p-2 border-b-2 max-w-40 break-normal md:p-4">{{ product.description }}</td>
                     <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage1" alt=""
                             class="w-32 mx-auto">
-                        <input type="radio" name="img-selected" id="" class="">
+                        <input type="radio"  [name]="product.sku" id="" class="">
                     </td>
                     <td class="p-2 border-b-2 text-center md:p-4 "><img [src]="product.urlImage2" alt=""
                             class="w-32 mx-auto">
-                        <input type="radio" name="img-selected" id="" class="">
+                        <input type="radio"  [name]="product.sku" id="" class="">
                     </td>
                     <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage3" alt=""
                             class="w-32 mx-auto">
-                        <input type="radio" name="img-selected" id="" class="">
+                        <input type="radio"  [name]="product.sku" id="" class="">
                     </td>
                     <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage4" alt=""
                             class="w-32 mx-auto">
-                        <input type="radio" name="img-selected" id="" class="">
+                        <input type="radio"  [name]="product.sku" id="" class="">
                     </td>
                     <td class="p-2 border-b-2 text-center md:p-4"><app-button>Guardar</app-button></td>
                 </tr>
