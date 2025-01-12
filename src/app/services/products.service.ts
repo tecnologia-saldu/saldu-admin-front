@@ -30,6 +30,8 @@ export class ProductsService {
     if (uploadStatus) {
       params = params.append('uploadStatus', uploadStatus);
     }
+    console.log(params);
+    
     return this.http.get<Product[]>(this.apiUrl, { params });
   }
 

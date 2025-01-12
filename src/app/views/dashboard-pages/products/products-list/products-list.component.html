@@ -1,5 +1,15 @@
-<section class="text-bglight pt-8 pl-8" cdkScrollable>
+<section class="text-bglight p-1 md:p-8" cdkScrollable>
     <h1 class="p-2">Listado de productos</h1>
+    <form [formGroup]="formProvider">
+        <select name="Seleccione un proveedor" formControlName="selectProvider"
+            class="p-2 border-b-2 bg-light max-w-min">
+            <option value="default" selected="selected">Seleccione un proveedor</option>
+            @for(user of users; track $index) {
+            <option [value]="user.id_wooCommerce">{{ user.email }}</option>
+            }
+        </select><fa-icon class="pl-8 cursor-pointer" (click)="getProducts(formProvider.get('selectProvider')?.value, 'no seleccionada')"
+            [icon]="faMagnifyingGlass"></fa-icon>
+    </form>
     <cdk-virtual-scroll-viewport [itemSize]="50" minBufferPx=200 maxBufferPx=400 ViewportRuler class="viewport">
         <table class="w-full border-collapse border-spacing-0 pr-2" cdkScrollable>
             <thead cdkScrollable>

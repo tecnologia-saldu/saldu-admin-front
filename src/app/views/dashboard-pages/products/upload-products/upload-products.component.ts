@@ -62,7 +62,9 @@ export class UploadProductsComponent {
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
     console.log(this.selectedFile);
-    // Guardamos el archivo
   }
 
+  refresh() {
+    window.location.reload()
+  }
 }

@@ -10,3 +10,13 @@ h1 {
 section {
     height: calc(100vh - 68px);
 }
+
+cdk-virtual-scroll-viewport {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow: -webkit-hidden-scrollbar;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}

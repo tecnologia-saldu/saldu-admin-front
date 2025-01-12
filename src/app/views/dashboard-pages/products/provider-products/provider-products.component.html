@@ -1,4 +1,4 @@
-<section class="text-bglight pt-8 pl-8" cdkScrollable>
+<section class="text-bglight p-1 md:p-8" cdkScrollable>
     <h1 class="p-2">Listado de productos</h1>
     <div class="flex justify-between pt-4">
         <form [formGroup]="formProvider">
@@ -8,7 +8,7 @@
                 @for(user of users; track $index) {
                 <option [value]="user.id_wooCommerce">{{ user.email }}</option>
                 }
-            </select><fa-icon class="pl-8" (click)="getProducts(formProvider.get('selectProvider')?.value)"
+            </select><fa-icon class="pl-8 cursor-pointer" (click)="getProducts(formProvider.get('selectProvider')?.value)"
                 [icon]="faMagnifyingGlass"></fa-icon>
         </form>
         <app-button (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value)">Descargar listado</app-button>

@@ -63,14 +63,9 @@ export class ProviderProductsComponent {
         const url = window.URL.createObjectURL(response);
         const link = document.createElement('a');
         link.href = url;
-
-        // Establecer el nombre del archivo descargado
         link.download = `products_${providerId}.csv`;
-        // Simular clic para descargar
         document.body.appendChild(link);
         link.click();
-
-        // Limpiar recursos
         document.body.removeChild(link);
         window.URL.revokeObjectURL(url);
 
