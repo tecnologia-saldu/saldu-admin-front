@@ -45,10 +45,6 @@ export class ProviderProductsComponent {
     this.getUser()
   }
 
-  ngOnChanges() {
-    console.log();
-  }
-
   getUser() {
     this.userService.getUsers('vendedor').subscribe({
       next: (data) =>

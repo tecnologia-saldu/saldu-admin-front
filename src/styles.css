@@ -13,7 +13,7 @@ section {
     height: calc(100vh - 68px);
 }
 
-cdk-virtual-scroll-viewport {
+/* cdk-virtual-scroll-viewport {
     scrollbar-width: none;
     -ms-overflow-style: none;
     overflow: -webkit-hidden-scrollbar;
@@ -21,4 +21,4 @@ cdk-virtual-scroll-viewport {
 
 ::-webkit-scrollbar {
     display: none;
-}
+} */
