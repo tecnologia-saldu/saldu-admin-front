@@ -16,7 +16,7 @@
             }
         </select>
         <fa-icon class="pl-8 cursor-pointer"
-            (click)="getProducts(formProvider.get('selectProvider')?.value, 'no seleccionada')"
+            (click)="getProducts(formProvider.get('selectProvider')?.value, 'no seleccionada', formProvider.get('selectLoad')?.value)"
             [icon]="faMagnifyingGlass"></fa-icon>
     </form>
     @if(products.length > 0) {

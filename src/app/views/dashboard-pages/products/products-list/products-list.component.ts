@@ -53,6 +53,8 @@ export class ProductsListComponent {
   }
 
   getProducts(providerId?: number, uploadStatus?: string, loadId?: string) {
+    console.log(loadId);
+    
     this.productService.getProducts(providerId, uploadStatus, loadId).subscribe({
       next: (data) => {
         this.products = data;
