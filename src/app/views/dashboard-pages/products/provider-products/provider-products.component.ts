@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductsService } from '../../../../services/products.service';
-import { Product } from '../../../../models/product.model';
+import { Load, Product } from '../../../../models/product.model';
 import { ToastrService } from 'ngx-toastr';
 
 
@@ -26,6 +26,7 @@ export class ProviderProductsComponent {
   users: User[] = [];
   formProvider: FormGroup;
   products: Product[] = [];
+  loads: Load[] = [];
 
   private userService = inject(UserService);
   private productService = inject(ProductsService);
@@ -35,12 +36,17 @@ export class ProviderProductsComponent {
   constructor(private fb: FormBuilder) {
     this.formProvider = this.fb.group({
       selectProvider: ['default'],
+      selectLoad: ['default'],
     });
 
   }
 
   ngOnInit() {
     this.getUser()
+  }
+
+  ngOnChanges() {
+    console.log();
   }
 
   getUser() {
@@ -60,6 +66,15 @@ export class ProviderProductsComponent {
       },
       error: (error) => {
         this.toastr.error('Seleccione un proveedor')
+      }
+    })
+    this.getLoads(providerId);
+  }
+
+  getLoads(providerId: number) {
+    this.productService.getLoads(providerId).subscribe({
+      next: (load) => {
+        this.loads = load;
       }
     })
   }

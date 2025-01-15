@@ -14,9 +14,17 @@ export interface UploadResponse {
     processed: number;
     rejected: number;
     rejectedProducts: any;
+    load: Load;
 }
 
 export interface UpdateImageResponse {
     id: number;
     imagesUrl: string;
+}
+
+export interface Load {
+    id: number;
+    providerId: number;
+    reference: string;
+    createdAt: string;
 }

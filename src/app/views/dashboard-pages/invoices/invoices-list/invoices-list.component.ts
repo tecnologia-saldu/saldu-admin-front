@@ -26,24 +26,12 @@ export class InvoicesListComponent {
 
   invoices: Invoice[] = [];
   faPenToSquare = faPenToSquare;
-  selectAll = false;
-  // pageSize = 10;
-  // currentPage = 1;
-  // items = this.getInvoices(this.currentPage - 1, this.pageSize); // Adjust for 0-based indexing
-
-  // pageChange(event: PageChangedEvent) {
-  //   this.currentPage = event.page;
-  //   this.items = this.getInvoices(this.currentPage - 1, this.pageSize);
-  // }
-  
+  selectAll = false;  
 
   ngOnInit() {
     this.getInvoices();
     console.log(this.invoices);
     
-    // if(this.invoices.length <= 0) {
-    //   this.toastr.error('No se encontraron facturas')
-    // }
   }
 
   getInvoices() {

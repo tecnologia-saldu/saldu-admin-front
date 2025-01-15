@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { TokenService } from './token.service';
+import { Load } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,4 +25,5 @@ export class UserService {
     }
     return this.http.get<User[]>(this.apiUrl, { headers, params });
   }
+  
 }

@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Product, UploadResponse } from '../models/product.model';
+import { Load, Product, UploadResponse } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +39,10 @@ export class ProductsService {
 
   downloadProductsCsv(providerId: number) {
     return this.http.get(`${this.apiUrl}/${providerId.toString()}/csv`, { responseType: 'blob'});
+  }
+
+  getLoads(providerId: number) {
+    return this.http.get<Load[]>(`${this.apiUrl}/loads/${providerId}`)
   }
 
 }

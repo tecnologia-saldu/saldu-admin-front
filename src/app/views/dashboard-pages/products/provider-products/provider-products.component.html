@@ -8,8 +8,14 @@
                 @for(user of users; track $index) {
                 <option [value]="user.id_wooCommerce">{{ user.email }}</option>
                 }
-            </select><fa-icon class="pl-8 cursor-pointer" (click)="getProducts(formProvider.get('selectProvider')?.value)"
+            </select><fa-icon class="px-8 cursor-pointer" (click)="getProducts(formProvider.get('selectProvider')?.value)"
                 [icon]="faMagnifyingGlass"></fa-icon>
+                <!-- <select name="Seleccione una carga"  id="" formControlName="selectLoad" class="p-2 border-b-2 bg-light max-w-min">
+                    <option value="default" selected="selected">Seleccione un archivo de carga</option>
+                    @for(load of loads; track $index) {
+                        <option [value]="load.id">{{ load.reference }}</option>
+                    } 
+                </select> -->
         </form>
         <app-button (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value)">Descargar listado</app-button>
     </div>
