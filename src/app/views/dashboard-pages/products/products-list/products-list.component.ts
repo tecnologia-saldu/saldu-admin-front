@@ -52,8 +52,8 @@ export class ProductsListComponent {
     });
   }
 
-  getProducts(providerId?: number, uploadStatus?: string) {
-    this.productService.getProducts(providerId, uploadStatus).subscribe({
+  getProducts(providerId?: number, uploadStatus?: string, loadId?: string) {
+    this.productService.getProducts(providerId, uploadStatus, loadId).subscribe({
       next: (data) => {
         this.products = data;
         console.log(data);

@@ -22,14 +22,17 @@ export class ProductsService {
     return this.http.post<UploadResponse>(`${this.apiUrl}/massive-upload/${providerId}`, formData);
   }
 
-  getProducts(providerId?: number, uploadStatus?: string) {
+  getProducts(providerId?: number, uploadStatus?: string, loadId?: string) {
     let params = new HttpParams();
     if (providerId !== undefined) {
       params = params.append('providerId', providerId.toString());
     }
     if (uploadStatus) {
       params = params.append('uploadStatus', uploadStatus);
-    }    
+    }   
+    if (loadId) {
+      params = params.append('loadId', loadId);
+    }  
     return this.http.get<Product[]>(this.apiUrl, { params });
   }
 
