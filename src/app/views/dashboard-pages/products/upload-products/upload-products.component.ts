@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { faCheck, faX, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -9,12 +9,13 @@ import { User } from '../../../../models/user.model';
 import { ProductsService } from '../../../../services/products.service';
 import { UploadResponse } from '../../../../models/product.model';
 import { ScrollingModule, CdkVirtualForOf } from '@angular/cdk/scrolling';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
   selector: 'app-upload-products',
   standalone: true,
-  imports: [ButtonComponent, RouterLink, ReactiveFormsModule, FontAwesomeModule, ScrollingModule, CdkVirtualForOf],
+  imports: [ButtonComponent, ReactiveFormsModule, FontAwesomeModule, ScrollingModule, CdkVirtualForOf],
   templateUrl: './upload-products.component.html',
   styleUrl: './upload-products.component.css'
 })
@@ -31,7 +32,9 @@ export class UploadProductsComponent {
 
   private userService = inject(UserService);
   private productService = inject(ProductsService);
-  constructor(private fb: FormBuilder) {
+  private toastr = inject(ToastrService);
+
+  constructor(private fb: FormBuilder, private router: Router) {
     this.formProvider = this.fb.group({
       selectProvider: ['default'],
     });
@@ -39,15 +42,26 @@ export class UploadProductsComponent {
   }
 
   ngOnInit() {
-    this.getUser()
+    this.getUser();
   }
 
   fileUpload(providerId: number) {
+    console.log(providerId);
+    
     this.productService.fileUpload(providerId, this.selectedFile).subscribe({
       next: (data) => {
         this.response = data;
-        console.log(data);
-
+      },
+      error: (error) => {
+        if (error.error.trigger == 'file') {
+          this.toastr.error('Seleccione un archivo');
+        } else if (error.error.trigger == 'providerId') {
+          this.toastr.error('Seleccione un proveedor');
+        } else {
+          this.toastr.error('Error del servidor')
+        }
+        console.log(error);
+        
       }
     })
   }
@@ -61,7 +75,6 @@ export class UploadProductsComponent {
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile);
   }
 
   refresh() {

@@ -10,6 +10,7 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { Invoice } from '../../../../models/invoice.model';
 import { InvoicesService } from '../../../../services/invoices.service';
 import { ButtonComponent } from '../../../../shared-components/button/button.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -21,6 +22,7 @@ import { ButtonComponent } from '../../../../shared-components/button/button.com
 })
 export class InvoicesListComponent {
   private invoicesService = inject(InvoicesService);
+  private toastr = inject(ToastrService);
 
   invoices: Invoice[] = [];
   faPenToSquare = faPenToSquare;
@@ -37,6 +39,11 @@ export class InvoicesListComponent {
 
   ngOnInit() {
     this.getInvoices();
+    console.log(this.invoices);
+    
+    // if(this.invoices.length <= 0) {
+    //   this.toastr.error('No se encontraron facturas')
+    // }
   }
 
   getInvoices() {
@@ -44,6 +51,9 @@ export class InvoicesListComponent {
       next: (data) => {
         this.invoices = data;
       },
+      error: (error) => {
+        this.toastr.error('No se encontraron órdenes pendientes')
+      }
     });
   }
 

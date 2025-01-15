@@ -9,6 +9,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductsService } from '../../../../services/products.service';
 import { Product } from '../../../../models/product.model';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -28,6 +29,8 @@ export class ProviderProductsComponent {
 
   private userService = inject(UserService);
   private productService = inject(ProductsService);
+  private toastr = inject(ToastrService);
+
 
   constructor(private fb: FormBuilder) {
     this.formProvider = this.fb.group({
@@ -51,7 +54,12 @@ export class ProviderProductsComponent {
     this.productService.getProducts(providerId, 'seleccionada').subscribe({
       next: (data) => {
         this.products = data;
-        console.log(data);
+        if (data.length == 0) {
+          this.toastr.error('No se encontraron productos')
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Seleccione un proveedor')
       }
     })
   }
@@ -59,7 +67,6 @@ export class ProviderProductsComponent {
   downloadProductsCsv(providerId: number) {
     this.productService.downloadProductsCsv(providerId).subscribe({
       next: (response: Blob) => {
-        console.log('Su archivo ha sido descargado con exito')
         const url = window.URL.createObjectURL(response);
         const link = document.createElement('a');
         link.href = url;
@@ -68,7 +75,7 @@ export class ProviderProductsComponent {
         link.click();
         document.body.removeChild(link);
         window.URL.revokeObjectURL(url);
-
+        this.toastr.success('Archivo descargado con éxito');
       }
     })
   }

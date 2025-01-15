@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signin',
@@ -16,10 +17,13 @@ export class SigninComponent {
   faEyeSlash = faEyeSlash;
   faEye = faEye;
   status: 'init' | 'loading' | 'success' | 'failed' = 'init';
+
+  private toastr = inject(ToastrService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
   
   constructor(
-    private authService: AuthService,
-    private router: Router,
     private formBuilder: FormBuilder,
   ) { }
   
@@ -42,6 +46,7 @@ export class SigninComponent {
           },
           error: () => {
             this.status = 'failed';
+            this.toastr.error('El email o la contraseña son incorrectos');
           }
         });
     } else {

@@ -1,6 +1,6 @@
 <section class="bg-bg text-white flex flex-col justify-between sidebar">
     <ul class="pt-2">
-        <a routerLink="/dashboard">
+        <a [routerLink]="['/dashboard']">
             <li class="py-4 px-8" [routerLinkActive]="['bg-bglight']">
                 <fa-icon [icon]="faChartLine"></fa-icon> Dashboard
             </li>
@@ -31,15 +31,13 @@
                 <fa-icon [icon]="faChevronDown" [class.rotate-180]="itemProducts.expanded"></fa-icon>
             </li>
             <cdk-accordion-item #itemProducts="cdkAccordionItem">
-                <a routerLink="/upload-products">
-                    <li class="py-4 px-10" [routerLinkActive]="['bg-bglight']"
+                    <li class="py-4 px-10" [routerLinkActive]="['bg-bglight']" [routerLink]="['/upload-products']"
                         [style.display]="itemProducts.expanded ? '' : 'none'"> Carga de productos
                     </li>
-                </a>
             </cdk-accordion-item>
             <cdk-accordion-item #itemProducts="cdkAccordionItem">
-                <a routerLink="/products-list">
-                    <li class="py-4 px-10" [routerLinkActive]="['bg-bglight']"
+                <a [routerLink]="['/products-list']">
+                    <li class="py-4 px-10" 
                         [style.display]="itemProducts.expanded ? '' : 'none'"> Listado de productos sin imagen
                     </li>
                 </a>
@@ -64,5 +62,5 @@
             </li>
         </a> -->
     </ul>
-    <button (click)="logout()" class="py-8 hover:text-yellow"><fa-icon [icon]="faRightFromBracket"></fa-icon> Log out</button>
+    <button (click)="logout()" class="py-8 hover:text-yellow"><fa-icon [icon]="faRightFromBracket"></fa-icon> Cerrar sesión</button>
 </section>

@@ -19,7 +19,7 @@ export class DashboardComponent {
     this.invoicesService.getInvoices().subscribe({
       next: (data) => {
         this.invoices = data;
-      },
+      }
     });
   }
 

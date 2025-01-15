@@ -26,7 +26,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/ngx-spinner/animations/line-spin-clockwise-fade.css"
+              "node_modules/ngx-spinner/animations/line-spin-clockwise-fade.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },

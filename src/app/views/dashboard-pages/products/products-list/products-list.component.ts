@@ -9,6 +9,7 @@ import { Product, UpdateImageResponse } from '../../../../models/product.model';
 import { ProductsService } from '../../../../services/products.service';
 import { User } from '../../../../models/user.model';
 import { UserService } from '../../../../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-products-list',
@@ -23,7 +24,8 @@ export class ProductsListComponent {
 
   private productService = inject(ProductsService);
   private userService = inject(UserService);
-
+  private toastr = inject(ToastrService);
+  
   updateImageResponse!: UpdateImageResponse;
   users: User[] = [];
   products: Product[] = [];
@@ -38,7 +40,6 @@ export class ProductsListComponent {
   }
 
   ngOnInit() {
-    this.getProducts(undefined, 'no seleccionada');
     this.getUser();
   }
 
@@ -46,6 +47,14 @@ export class ProductsListComponent {
     this.productService.getProducts(providerId, uploadStatus).subscribe({
       next: (data) => {
         this.products = data;
+        console.log(data);
+        if(data.length == 0) {
+          this.toastr.error('No se encontraron productos')
+        }
+        
+      },
+      error: (error) => {
+          this.toastr.error('Seleccione un proveedor')
       }
     })
   }
