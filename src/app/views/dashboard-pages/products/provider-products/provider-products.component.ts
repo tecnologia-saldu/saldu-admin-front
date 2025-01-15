@@ -56,6 +56,8 @@ export class ProviderProductsComponent {
     this.productService.getProducts(providerId, 'seleccionada').subscribe({
       next: (data) => {
         this.products = data;
+        console.log(this.products);
+        
         if (data.length == 0) {
           this.toastr.error('No se encontraron productos')
         }

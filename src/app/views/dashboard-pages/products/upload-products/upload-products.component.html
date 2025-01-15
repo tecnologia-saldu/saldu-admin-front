@@ -43,7 +43,7 @@
             Rechazados: {{ response.rejected }}</h1>
     </div>
     @if(response.rejectedProducts.length >= 1) {
-        <cdk-virtual-scroll-viewport [itemSize]="50" minBufferPx=200 maxBufferPx=400 ViewportRuler class="viewport">
+        <cdk-virtual-scroll-viewport [itemSize]="150" minBufferPx=200 maxBufferPx=400 ViewportRuler class="viewport">
             <table class="w-full border-collapse border-spacing-0 pr-2" cdkScrollable>
                 <thead cdkScrollable>
                     <tr>
