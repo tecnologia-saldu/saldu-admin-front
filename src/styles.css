@@ -9,7 +9,7 @@ h1 {
 }
 
 section {
-    height: calc(100vh - 67px);
+    height: calc(100vh - 68px);
 }
 
 /* cdk-virtual-scroll-viewport {
