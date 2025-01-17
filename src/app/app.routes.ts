@@ -50,6 +50,7 @@ export const routes: Routes = [
       },
       {
         path: 'invoice-detail/:id',
+        canActivate: [AuthGuard],
         component: InvoiceDetailComponent,
         pathMatch: 'full'
       }

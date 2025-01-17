@@ -9,16 +9,16 @@ export class TokenService {
   constructor() { }
 
   saveToken(token: string) {
-    setCookie('token', token, { expires: 365, path: '/' });
+    localStorage.setItem('token', token);
   }
 
   getToken() {
-    const token = getCookie('token');
+    const token = localStorage.getItem('token');
     return token;
   }
 
   removeToken() {
-    removeCookie('token')
+    localStorage.removeItem('token')
   }
 
   hasToken(): boolean {

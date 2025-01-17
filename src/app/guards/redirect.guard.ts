@@ -10,7 +10,7 @@ export class RedirectGuard implements CanActivate {
 
   canActivate(): boolean {
     if (this.tokenService.hasToken()) {
-      this.router.navigate(['/invoices'])
+      this.router.navigate(['/dashboard'])
     }
     return true;
   }

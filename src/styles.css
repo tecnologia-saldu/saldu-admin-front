@@ -12,6 +12,17 @@ section {
     height: calc(100vh - 68px);
 }
 
+.section {
+    padding: .25rem;
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
 /* cdk-virtual-scroll-viewport {
     scrollbar-width: none;
     -ms-overflow-style: none;
