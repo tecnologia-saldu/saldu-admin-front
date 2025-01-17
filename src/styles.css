@@ -5,12 +5,11 @@
 @tailwind utilities;
 
 h1 {
-    font-size: 1.5rem;
-    line-height: 2rem;
+    font-size: clamp(1rem, 3vw + 1rem, 1.2rem);
 }
 
 section {
-    height: calc(100vh - 68px);
+    height: calc(100vh - 67px);
 }
 
 /* cdk-virtual-scroll-viewport {

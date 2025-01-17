@@ -29,9 +29,7 @@ export class InvoicesListComponent {
   selectAll = false;  
 
   ngOnInit() {
-    this.getInvoices();
-    console.log(this.invoices);
-    
+    this.getInvoices();    
   }
 
   getInvoices() {

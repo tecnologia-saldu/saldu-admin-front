@@ -52,13 +52,10 @@ export class ProductsListComponent {
     });
   }
 
-  getProducts(providerId?: number, uploadStatus?: string, loadId?: string) {
-    console.log(loadId);
-    
+  getProducts(providerId?: number, uploadStatus?: string, loadId?: string) {    
     this.productService.getProducts(providerId, uploadStatus, loadId).subscribe({
       next: (data) => {
         this.products = data;
-        console.log(data);
         if(data.length == 0) {
           this.toastr.error('No se encontraron productos')
         }

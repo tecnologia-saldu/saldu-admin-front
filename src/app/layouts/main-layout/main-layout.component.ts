@@ -29,14 +29,13 @@ export class MainLayoutComponent {
   }
 
   closeSidebar(): void {
-    this.isSidebarVisible = false; // Cierra el sidebar
+    this.isSidebarVisible = false;
   }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     const clickedElement = event.target as HTMLElement;
 
-    // Cierra el sidebar si el clic ocurre fuera de él
     if (this.isSidebarVisible && !clickedElement.closest('.sidebar') && !clickedElement.closest('.navbar')) {
       this.closeSidebar();
     }

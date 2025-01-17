@@ -1,5 +1,5 @@
-<section class="text-bglight p-1 md:p-8" cdkScrollable>
-    <h1 class="p-2">Listado de productos sin imagen</h1>
+<section class="text-bglight p-1 md:px-6" cdkScrollable>
+    <h1 class="py-4">Listado de productos sin imagen</h1>
     <form [formGroup]="formProvider" class="py-4">
         <select name="Seleccione un proveedor" formControlName="selectProvider"
             class="p-2 border-b-2 bg-light max-w-min mr-8">
@@ -20,7 +20,7 @@
             [icon]="faMagnifyingGlass"></fa-icon>
     </form>
     @if(products.length > 0) {
-    <cdk-virtual-scroll-viewport [itemSize]="150" minBufferPx=200 maxBufferPx=400 ViewportRuler class="viewport">
+    <cdk-virtual-scroll-viewport [itemSize]="200" minBufferPx=200 maxBufferPx=400 ViewportRuler class="viewport">
         <table class="w-full border-collapse border-spacing-0 pr-2" cdkScrollable>
             <thead cdkScrollable>
                 <tr>
@@ -58,5 +58,6 @@
             </tbody>
         </table>
     </cdk-virtual-scroll-viewport>
+    <div class="flex justify-end"><p class="bg-bglight text-white text-center mt-2 max-w-fit px-8 py-2 flex justify-end">Productos en total: {{ products.length }}</p></div>
     }
 </section>

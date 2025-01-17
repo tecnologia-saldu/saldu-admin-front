@@ -45,9 +45,7 @@ export class UploadProductsComponent {
     this.getUser();
   }
 
-  fileUpload(providerId: number) {
-    console.log(providerId);
-    
+  fileUpload(providerId: number) {    
     this.productService.fileUpload(providerId, this.selectedFile).subscribe({
       next: (data) => {
         this.response = data;
@@ -59,9 +57,7 @@ export class UploadProductsComponent {
           this.toastr.error('Seleccione un proveedor');
         } else {
           this.toastr.error('Error del servidor')
-        }
-        console.log(error);
-        
+        }        
       }
     })
   }

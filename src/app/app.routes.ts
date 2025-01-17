@@ -23,8 +23,12 @@ export const routes: Routes = [
         component: MainLayoutComponent,
         children: [
           {
-            path: 'invoices',
+            path: 'pending-invoices',
             loadComponent: () => import('./views/dashboard-pages/invoices/invoices-list/invoices-list.component').then(m => m.InvoicesListComponent)
+          },
+          {
+            path: 'done-invoices',
+            loadComponent: () => import('./views/dashboard-pages/invoices/done-invoices/done-invoices.component').then(m => m.DoneInvoicesComponent)
           },
           {
             path: 'dashboard',
