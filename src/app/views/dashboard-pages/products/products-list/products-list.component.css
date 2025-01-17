@@ -1,5 +1,5 @@
  .viewport {
-    height: 68dvh;
+    height: calc(100vh - 255px);
 }
 
 img {
