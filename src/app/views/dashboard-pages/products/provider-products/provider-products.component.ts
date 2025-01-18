@@ -75,8 +75,8 @@ export class ProviderProductsComponent {
     })
   }
 
-  downloadProductsCsv(providerId: number) {
-    this.productService.downloadProductsCsv(providerId).subscribe({
+  downloadProductsCsv(providerId: number, uploadStatus: string) {
+    this.productService.downloadProductsCsv(providerId, uploadStatus).subscribe({
       next: (response: Blob) => {
         const url = window.URL.createObjectURL(response);
         const link = document.createElement('a');

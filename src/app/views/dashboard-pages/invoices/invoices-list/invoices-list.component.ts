@@ -35,7 +35,7 @@ export class InvoicesListComponent {
   getInvoices() {
     this.invoicesService.getInvoices().subscribe({
       next: (data) => {
-        this.invoices = data;
+        this.invoices = data;        
       },
       error: (error) => {
         this.toastr.error('No se encontraron órdenes pendientes')
@@ -61,12 +61,14 @@ export class InvoicesListComponent {
 
   submit() {
     if (this.selectedCheckboxes.length == 0) {
-      console.log('Empty selection');
+      this.toastr.error('No hay órdenes seleccionadas')
     } else {
       for (const invoice of this.selectedCheckboxes) {
         this.invoicesService.uploadToSiigo(invoice.id).subscribe({
           next: (data) => {
-
+          },
+          error: (error) => {
+            this.toastr.error('Error al enviar la factura')
           }
         })
       }

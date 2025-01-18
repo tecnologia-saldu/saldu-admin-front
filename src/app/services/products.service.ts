@@ -22,6 +22,10 @@ export class ProductsService {
     return this.http.post<UploadResponse>(`${this.apiUrl}/massive-upload/${providerId}`, formData);
   }
 
+  downloadRejected(rejectedProducts: any) {
+    return this.http.post(`${this.apiUrl}/massive-upload/rejected`, rejectedProducts, { responseType: 'blob'} );
+  }
+
   getProducts(providerId?: number, uploadStatus?: string, loadId?: string) {
     let params = new HttpParams();
     if (providerId !== undefined) {
@@ -40,8 +44,8 @@ export class ProductsService {
     return this.http.put<Product>(`${this.apiUrl}/${productId}`, { imagesUrl: urlImage });
   }
 
-  downloadProductsCsv(providerId: number) {
-    return this.http.get(`${this.apiUrl}/${providerId.toString()}/csv`, { responseType: 'blob'});
+  downloadProductsCsv(providerId: number, uploadStatus: string) {
+    return this.http.get(`${this.apiUrl}/${providerId.toString()}/${uploadStatus}/csv`, { responseType: 'blob'});
   }
 
   getLoads(providerId: number) {

@@ -4,6 +4,7 @@ import { RedirectGuard } from './guards/redirect.guard';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { InvoiceDetailComponent } from './views/dashboard-pages/invoices/invoice-detail/invoice-detail.component';
+import { NotFoundComponent } from './views/not-found/not-found.component';
 
 export const routes: Routes = [
     {
@@ -52,6 +53,11 @@ export const routes: Routes = [
         path: 'invoice-detail/:id',
         canActivate: [AuthGuard],
         component: InvoiceDetailComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: '**',
+        component: NotFoundComponent,
         pathMatch: 'full'
       }
 ];

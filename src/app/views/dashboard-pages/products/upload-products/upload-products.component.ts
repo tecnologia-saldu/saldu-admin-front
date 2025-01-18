@@ -45,7 +45,7 @@ export class UploadProductsComponent {
     this.getUser();
   }
 
-  fileUpload(providerId: number) {    
+  fileUpload(providerId: number) {
     this.productService.fileUpload(providerId, this.selectedFile).subscribe({
       next: (data) => {
         this.response = data;
@@ -57,10 +57,26 @@ export class UploadProductsComponent {
           this.toastr.error('Seleccione un proveedor');
         } else {
           this.toastr.error('Error del servidor')
-        }        
+        }
       }
     })
   }
+
+  // downloadRejected(rejectedProducts: any) {
+  //   this.productService.downloadRejected(rejectedProducts).subscribe({
+  //     next: (response: Blob) => {
+  //       const url = window.URL.createObjectURL(response);
+  //       const link = document.createElement('a');
+  //       link.href = url;
+  //       link.download = `massiveUploadRejectedProducts.csv`;
+  //       document.body.appendChild(link);
+  //       link.click();
+  //       document.body.removeChild(link);
+  //       window.URL.revokeObjectURL(url);
+  //       this.toastr.success('Archivo descargado con éxito');
+  //     }
+  //   })
+  // }
 
   getUser() {
     this.userService.getUsers('vendedor').subscribe({

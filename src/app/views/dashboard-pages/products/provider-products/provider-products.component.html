@@ -17,7 +17,10 @@
                     } 
                 </select> -->
         </form>
-        <app-button (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value)">Descargar listado</app-button>
+        <div class="gap-4 flex">
+            <app-button (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value, 'no_seleccionada')">Descargar listado sin imágenes</app-button>
+            <app-button (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value, 'seleccionada')">Descargar listado con imágenes</app-button>
+        </div>
     </div>
     <cdk-virtual-scroll-viewport itemSize="200" minBufferPx=200 maxBufferPx=400 ViewportRuler class="viewport">
         <table class="w-full border-collapse border-spacing-0" cdkScrollable>
@@ -41,6 +44,6 @@
         </table>
     </cdk-virtual-scroll-viewport>
     @if(products.length > 0) {
-        <div class="flex justify-end"><p class="bg-bglight text-white text-center mt-2 max-w-fit px-8 py-2 flex justify-end">Productos en total: {{ products.length }}</p></div>
+        <div class="flex justify-end"><p class="bg-bg text-white text-center mt-2 max-w-fit px-8 py-2 flex justify-end">Productos en total: {{ products.length }}</p></div>
     }
 </section>

@@ -15,6 +15,10 @@ export class InvoicesService {
   getInvoices() {
     return this.http.post<Invoice[]>(`${this.apiUrl}/all-pending`, '');
   }
+  
+  getDoneInvoices() {
+    return this.http.get<Invoice[]>(`${this.apiUrl}/siigo-generated`)
+  }
 
   getOneInvoice(id: string) {
     return this.http.get<Invoice>(`${this.apiUrl}/${id}`);
