@@ -104,6 +104,7 @@ export class ProductsListComponent {
       next: (data) => {
         this.updateImageResponse = data;
         this.toastr.success('Imagen guardada correctamente');
+        this.products = this.products.filter(product => product.id !== productId);
       },
       error: (error) => {
         this.toastr.error('No se pudo guardar la imagen')
@@ -114,7 +115,8 @@ export class ProductsListComponent {
   uploadImageS3(providerId: number, productId: number) {
     this.productService.uploadImageS3(providerId, productId, this.selectedFile).subscribe({
       next: (data) => {
-        this.toastr.success('Imagen guardada correctamente')
+        this.toastr.success('Imagen guardada correctamente');
+        this.products = this.products.filter(product => product.id !== productId);
       },
       error: (error) => {
         this.toastr.error('No se pudo guardar la imagen')

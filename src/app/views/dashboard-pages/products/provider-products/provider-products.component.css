@@ -1,3 +1,7 @@
 .viewport {
     height: calc(100vh - 255px);
 }
+
+img {
+    aspect-ratio: 1/1;
+}
