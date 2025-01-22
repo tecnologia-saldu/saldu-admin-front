@@ -78,4 +78,5 @@ export class InvoicesListComponent {
   get selectedCheckboxes() {
     return this.invoices.filter((invoice) => invoice.checkbox);
   }
+  
 }

@@ -52,12 +52,22 @@
                         <input type="radio" (change)="onImageSelect(product.sku, product.urlImage4)"
                             [value]="product.urlImage4" [name]="product.sku" class="">
                     </td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><app-button
-                            (click)="saveImage(product.id, selectedImage[product.sku])">Guardar</app-button></td>
+                    <td class="p-2 border-b-2 text-center md:p-4">
+                        <div class="flex flex-col gap-4">
+                            <app-button
+                            (click)="saveImage(product.id, selectedImage[product.sku])">Guardar</app-button>
+                        <input accept="image/png, image/jpeg" type="file" name="file" (change)="onFileSelected($event, product.id)"
+                            #uploader class="hidden">
+                        <app-button (click)="uploader.click()">Cargar imagen</app-button>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </cdk-virtual-scroll-viewport>
-    <div class="flex justify-end"><p class="bg-bg text-white text-center mt-2 max-w-fit px-8 py-2 flex justify-end">Productos en total: {{ products.length }}</p></div>
+    <div class="flex justify-end">
+        <p class="bg-bg text-white text-center mt-2 max-w-fit px-8 py-2 flex justify-end">Productos en total: {{
+            products.length }}</p>
+    </div>
     }
 </section>

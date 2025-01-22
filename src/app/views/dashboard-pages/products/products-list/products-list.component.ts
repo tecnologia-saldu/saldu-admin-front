@@ -25,13 +25,14 @@ export class ProductsListComponent {
   private productService = inject(ProductsService);
   private userService = inject(UserService);
   private toastr = inject(ToastrService);
-  
+
   updateImageResponse!: UpdateImageResponse;
   users: User[] = [];
   products: Product[] = [];
   selectedImage: { [key: string]: string } = {};
   formProvider: FormGroup;
   loads: Load[] = [];
+  selectedFile: File | null = null;
 
 
   constructor(private fb: FormBuilder) {
@@ -52,22 +53,22 @@ export class ProductsListComponent {
     });
   }
 
-  getProducts(providerId?: number, uploadStatus?: string, loadId?: string) {    
+  getProducts(providerId?: number, uploadStatus?: string, loadId?: string) {
     this.productService.getProducts(providerId, uploadStatus, loadId).subscribe({
       next: (data) => {
         this.products = data;
-        if(data.length == 0) {
+        if (data.length == 0) {
           this.toastr.error('No se encontraron productos')
         }
       },
       error: (error) => {
-          this.toastr.error('Seleccione un proveedor')
+        this.toastr.error('Seleccione un proveedor')
       }
     })
-    if(providerId && providerId > 0) {
+    if (providerId && providerId > 0) {
       this.getLoads(providerId);
     } else {
-        this.toastr.error('Seleccione un proveedor')
+      this.toastr.error('Seleccione un proveedor')
     }
   }
 
@@ -102,8 +103,27 @@ export class ProductsListComponent {
     this.productService.saveProductImage(productId.toString(), urlImage).subscribe({
       next: (data) => {
         this.updateImageResponse = data;
-        console.log(this.updateImageResponse);
+        this.toastr.success('Imagen guardada correctamente');
+      },
+      error: (error) => {
+        this.toastr.error('No se pudo guardar la imagen')
       }
     })
+  }
+
+  uploadImageS3(providerId: number, productId: number) {
+    this.productService.uploadImageS3(providerId, productId, this.selectedFile).subscribe({
+      next: (data) => {
+        this.toastr.success('Imagen guardada correctamente')
+      },
+      error: (error) => {
+        this.toastr.error('No se pudo guardar la imagen')
+      }
+    })
+  }
+
+  onFileSelected(event: any, productId: number): void {
+    this.selectedFile = event.target.files[0];
+    this.uploadImageS3(this.formProvider.get('selectProvider')?.value, productId);
   }
 }

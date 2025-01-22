@@ -52,4 +52,12 @@ export class ProductsService {
     return this.http.get<Load[]>(`${this.apiUrl}/loads/${providerId}`)
   }
 
+  uploadImageS3(providerId: number, productId: number, file: File | null) {
+    const formData = new FormData();
+    if(file) {
+      formData.append('file', file)
+    };
+    return this.http.post<{url: string}>(`${this.apiUrl}/s3-upload/${providerId}/${productId}`, formData);
+  }
+
 }
