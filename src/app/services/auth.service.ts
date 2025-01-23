@@ -8,7 +8,7 @@ import { ResponseLogin } from '../models/auth.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://ec2-3-144-209-131.us-east-2.compute.amazonaws.com:3001/auth/signIn'
+  private apiUrl = 'http://ec2-3-138-142-64.us-east-2.compute.amazonaws.com:3001/auth/signIn'
   constructor(
     private http: HttpClient,
     private tokenService: TokenService

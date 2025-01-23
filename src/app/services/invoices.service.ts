@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class InvoicesService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://ec2-3-144-209-131.us-east-2.compute.amazonaws.com:3001/invoice';
+  private apiUrl = 'http://ec2-3-138-142-64.us-east-2.compute.amazonaws.com:3001/invoice';
 
 
   constructor() { }
