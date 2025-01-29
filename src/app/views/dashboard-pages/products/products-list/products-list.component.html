@@ -2,14 +2,14 @@
     <h1 class="py-4">Listado de productos sin imagen</h1>
     <form [formGroup]="formProvider" class="py-2">
         <select name="Seleccione un proveedor" formControlName="selectProvider"
-            class="p-2 border-b-2 bg-light max-w-min mr-8">
+            class="p-2 border-b-2 bg-lightgray max-w-min mr-8">
             <option value="default" selected="selected">Seleccione un proveedor</option>
             @for(user of users; track $index) {
             <option [value]="user.id_wooCommerce">{{ user.email }}</option>
             }
         </select>
         <select name="Seleccione una carga" id="" formControlName="selectLoad"
-            class="p-2 border-b-2 bg-light max-w-min">
+            class="p-2 border-b-2 bg-lightgray max-w-min">
             <option value="default" selected="selected">Seleccione un archivo de carga</option>
             @for(load of loads; track $index) {
             <option [value]="load.id">{{ load.reference }}</option>
@@ -54,11 +54,11 @@
                     </td>
                     <td class="p-2 border-b-2 text-center md:p-4">
                         <div class="flex flex-col gap-4">
-                            <app-button
+                            <app-button typeBtn="submit" color="success"
                             (click)="saveImage(product.id, selectedImage[product.sku])">Guardar</app-button>
                         <input accept="image/png, image/jpeg" type="file" name="file" (change)="onFileSelected($event, product.id)"
                             #uploader class="hidden">
-                        <app-button (click)="uploader.click()">Cargar imagen</app-button>
+                        <app-button typeBtn="button" color="blue" (click)="uploader.click()">Cargar imagen</app-button>
                         </div>
                     </td>
                 </tr>

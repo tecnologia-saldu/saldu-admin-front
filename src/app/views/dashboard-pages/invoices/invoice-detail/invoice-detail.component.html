@@ -42,7 +42,7 @@
                     </table>
                 </div>
     
-                <div class="bg-light text-sm p-4 md:px-14 md:py-6">
+                <div class="bg-lightgray text-sm p-4 md:px-14 md:py-6">
                     <table class="w-full border-collapse border-spacing-0">
                         <tbody>
                             <tr>
@@ -189,13 +189,13 @@
         </footer>  -->
             <article class="flex justify-end bottom-full mt-12 pr-2 gap-4 md:mt-28 md:pr-10">
                 @if(editMode()) {
-                <app-button (click)="updateInvoiceInfo($event)">Guardar</app-button>
+                <app-button typeBtn="submit" color="success" (click)="updateInvoiceInfo($event)">Guardar</app-button>
                     
 
                 } @else {
-                <app-button (click)="toggleEditMode($event)">Editar</app-button>
+                <app-button typeBtn="button" color="blue" (click)="toggleEditMode($event)">Editar</app-button>
                 }
-                <app-button (click)="submit()">Facturar</app-button>
+                <app-button typeBtn="submit" color="blue" (click)="submit()">Facturar</app-button>
             </article>
         </div>
     </div>

@@ -7,9 +7,9 @@ module.exports = {
       colors: {
         success: '#295c29',
         lightsuccess: '#51ac51',
-        danger: '#381616',
-        lightdanger: '#c86868',
-        light: '#f1f1f1',
+        danger: '#bd362f',
+        lightdanger: '#cb645b',
+        lightgray: '#f1f1f1',
         yellow: '#e8e454',
         bg: '#1a1a1d',
         bglight: '#2f2f2f',

@@ -47,6 +47,14 @@ export const routes: Routes = [
             path: 'provider-products',
             loadComponent: () => import('./views/dashboard-pages/products/provider-products/provider-products.component').then(m => m.ProviderProductsComponent)
           },
+          {
+            path: 'create-user',
+            loadComponent: () => import('./views/dashboard-pages/users/create-user/create-user.component').then(m => m.CreateUserComponent)
+          },
+          {
+            path: 'user-edition',
+            loadComponent: () => import('./views/dashboard-pages/users/edit-user/edit-user.component').then(m => m.EditUserComponent)
+          },
         ]
       },
       {

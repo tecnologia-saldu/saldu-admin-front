@@ -3,14 +3,14 @@
     <div class="flex justify-between py-2">
         <form [formGroup]="formProvider">
             <select name="Seleccione un proveedor" formControlName="selectProvider"
-                class="p-2 border-b-2 bg-light max-w-min">
+                class="p-2 border-b-2 bg-lightgray max-w-min">
                 <option value="default" selected="selected">Seleccione un proveedor</option>
                 @for(user of users; track $index) {
                 <option [value]="user.id_wooCommerce">{{ user.email }}</option>
                 }
             </select><fa-icon class="px-8 cursor-pointer" (click)="getProducts(formProvider.get('selectProvider')?.value)"
                 [icon]="faMagnifyingGlass"></fa-icon>
-                <!-- <select name="Seleccione una carga"  id="" formControlName="selectLoad" class="p-2 border-b-2 bg-light max-w-min">
+                <!-- <select name="Seleccione una carga"  id="" formControlName="selectLoad" class="p-2 border-b-2 bg-lightgray max-w-min">
                     <option value="default" selected="selected">Seleccione un archivo de carga</option>
                     @for(load of loads; track $index) {
                         <option [value]="load.id">{{ load.reference }}</option>
@@ -18,8 +18,8 @@
                 </select> -->
         </form>
         <div class="gap-4 flex">
-            <app-button (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value, 'no_seleccionada')">Descargar listado sin imágenes</app-button>
-            <app-button (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value, 'seleccionada')">Descargar listado con imágenes</app-button>
+            <app-button typeBtn="button" color="blue" (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value, 'no_seleccionada')">Descargar listado sin imágenes</app-button>
+            <app-button typeBtn="button" color="blue" (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value, 'seleccionada')">Descargar listado con imágenes</app-button>
         </div>
     </div>
     <cdk-virtual-scroll-viewport itemSize="200" minBufferPx=200 maxBufferPx=400 ViewportRuler class="viewport">

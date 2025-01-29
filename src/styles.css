@@ -22,13 +22,3 @@ section {
         padding-right: 1.5rem;
     }
 }
-
-/* cdk-virtual-scroll-viewport {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    overflow: -webkit-hidden-scrollbar;
-}
-
-::-webkit-scrollbar {
-    display: none;
-} */

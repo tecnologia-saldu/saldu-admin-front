@@ -19,7 +19,7 @@
                     type="file" name="file" accept=".csv" (change)="onFileSelected($event)">
             </div>
             <div class="p-4">
-                <app-button (click)="fileUpload(formProvider.get('selectProvider')?.value)">Subir archivo</app-button>
+                <app-button typeBtn="button" color="blue" (click)="fileUpload(formProvider.get('selectProvider')?.value)">Subir archivo</app-button>
             </div>
         </div>
     </article>
@@ -64,13 +64,13 @@
         </table>
     </cdk-virtual-scroll-viewport>
     <div class="flex justify-center gap-4">
-        <app-button (click)="refresh()" class="mt-4">Intentar de nuevo</app-button>
+        <app-button typeBtn="reset" color="blue" (click)="refresh()" class="mt-4">Intentar de nuevo</app-button>
         <!-- <app-button (click)="downloadRejected(response.rejectedProducts)" class="mt-4">Descargar rechazados</app-button> -->
     </div>
     }
     @if(response.rejectedProducts == 0) {
-    <div class="flex justify-center bottom-full p-2"><app-button (click)="refresh()" class="mt-4">Subir más
-            archivos</app-button></div>
+    <div class="flex justify-center bottom-full p-2"><app-button typeBtn="reset" color="blue" (click)="refresh()" class="mt-4">Subir más
+            archivos</app-button></div> 
     }
 </section>
 }

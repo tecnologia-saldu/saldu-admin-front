@@ -1,0 +1,102 @@
+<section class="section text-bglight overflow-y-auto">
+    <h1 class="py-4">Crear usuario nuevo</h1>
+    <form [formGroup]="newUserForm" class="flex flex-col gap-1 p-4 m-auto rounded-lg bg-white md:max-w-screen-md">
+        <label for="person-type">Tipo de persona</label>
+        <select id="person-type" class="p-1 w-fit border-2 rounded-lg">
+            <option value="">Natural</option>
+            <option value="">Jurídica</option>
+        </select>
+        <label for="bussiness-name" class="pt-2">Razón Social</label>
+        <input id="bussiness-name" class="border-2 rounded-lg p-1" type="text">
+        <div class="flex gap-4 pt-2 w-full">
+            <div class="flex flex-col w-full">
+                <label for="first-name" class="pb-1">Primer nombre</label>
+                <input id="first-name" class="border-2 rounded-lg p-1" type="text">
+            </div>
+            <div class="flex flex-col w-full">
+                <label for="second-name" class="pb-1">Segundo nombre</label>
+                <input id="second-name" class="border-2 rounded-lg p-1" type="text">
+            </div>
+        </div>
+        <div class="flex gap-4 pt-2 w-full">
+            <div class="flex flex-col w-full">
+                <label for="first-lastname" class="pb-1">Primer apellido</label>
+                <input id="first-lastname" class="border-2 rounded-lg p-1" type="text">
+            </div>
+            <div class="flex flex-col w-full">
+                <label for="second-lastname" class="pb-1">Segundo apellido</label>
+                <input id="second-lastname" class="border-2 rounded-lg p-1" type="text">
+            </div>
+        </div>
+        <label for="document-type" class="pt-2">Tipo de documento</label>
+        <select id="document-type" class="p-1 w-fit border-2 rounded-lg">
+            <option value="" selected disabled hidden>Seleccione tipo de documento</option>
+            <option value="">Cédula de ciudadanía</option>
+            <option value="">NIT</option>
+            <option value="">Cédula de extranjería</option>
+            <option value="">Documento de identificación extranjero</option>
+            <option value="">NIT de otro país</option>
+            <option value="">No obligado a registrarse en el RUT PN</option>
+            <option value="">NUIP</option>
+            <option value="">Pasaporte</option>
+            <option value="">Permiso especial de permanencia PEP</option>
+            <option value="">Registro civil</option>
+            <option value="">Sin identificación del exterior o para uso definido por la DIAN</option>
+            <option value="">Tarjeta de extranjería</option>
+            <option value="">Tarjeta de identidad</option>
+            <option value="">Salvoconducto de permanencia</option>
+            <option value="">Permiso protección temporal PPT</option>
+        </select>
+        <div class="document-number flex pt-2 gap-4 w-full">
+            <div class="flex flex-col w-3/5">
+                <label for="document-number" class="pb-1">Número de documento</label>
+                <input id="document-number" class="border-2 rounded-lg p-1" type="number">
+            </div>
+            <div class="flex flex-col w-2/5">
+                <label for="verification-digit" class="pb-1">Dígito de verificación</label>
+                <input id="verification-digit" class="border-2 rounded-lg p-1" type="number">
+            </div>
+        </div>
+        <div class="phone flex pt-2 gap-4 w-full">
+            <div class="flex flex-col w-1/6">
+                <label for="ind" class="pb-1">Indicativo</label>
+                <input id="ind" class="border-2 rounded-lg p-1" type="number">
+            </div>
+            <div class="flex flex-col w-4/6">
+                <label for="phone-number" class="pb-1">Número de teléfono</label>
+                <input id="phone-number" class="border-2 rounded-lg p-1" type="number">
+            </div>
+            <div class="flex flex-col w-1/6">
+                <label for="ext" class="pb-1">Extensión</label>
+                <input id="ext" class="border-2 rounded-lg p-1 " type="number">
+            </div>
+        </div>
+        <label for="email" class="pt-2">Email</label>
+        <input id="email" class="border-2 rounded-lg p-1" type="email">
+        <div class="flex pt-2 gap-4 w-full">
+            <div class="flex flex-col w-3/4">
+                <label for="temporary-password" class="pb-1">Contraseña temporal</label>
+                <div class="w-full">
+                    <input id="temporary-password" class="border-2 rounded-lg p-1 w-11/12" formControlName="randomPassword"
+                        [type]="showPassword ? 'text' : 'password'">
+                    <button class="p-1.5 w-1/12" (click)="showPassword = !showPassword">
+                        <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="pt-3">
+                <app-button (click)="generatePassword()" typeBtn="button" color="blue">Generar contraseña</app-button>
+            </div>
+        </div>
+        <label for="role" class="pt-2">Rol</label>
+        <select id="role" class="p-1 w-fit border-2 rounded-lg">
+            <option value="">Cliente</option>
+            <option value="">Vendedor</option>
+            <option value="">Broker</option>
+        </select>
+    </form>
+    <div class="flex justify-center mx-auto mt-8 mb-4 p-4 gap-4 md:p-0">
+        <app-button typeBtn="submit" color="blue">Guardar</app-button>
+        <app-button typeBtn="cancel" color="danger">Cancelar</app-button>
+    </div>
+</section>

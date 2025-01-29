@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
-import { faChartLine, faChevronDown, faFileLines, faList, faDolly, faChartBar, faRightFromBracket, faX } from '@fortawesome/free-solid-svg-icons';
+import { faChartLine, faUserPen, faUserPlus, faNotdef, faImages, faFileArrowUp, faChevronDown, faUsers, faFileLines, faList, faDolly, faChartBar, faRightFromBracket, faX, faFileInvoice, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../services/auth.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -23,6 +23,14 @@ export class SidebarComponent {
   faRightFromBracket = faRightFromBracket;
   faX = faX;
   faChevronDown = faChevronDown;
+  faUsers = faUsers;
+  faFileInvoice = faFileInvoice;
+  faFileInvoiceDollar = faFileInvoiceDollar;
+  faFileArrowUp = faFileArrowUp;
+  faImages = faImages;
+  faNotdef = faNotdef;
+  faUserPlus = faUserPlus;
+  faUserPen = faUserPen;
 
   constructor(
     private authService: AuthService,

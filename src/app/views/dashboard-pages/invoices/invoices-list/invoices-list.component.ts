@@ -35,7 +35,7 @@ export class InvoicesListComponent {
   getInvoices() {
     this.invoicesService.getInvoices().subscribe({
       next: (data) => {
-        this.invoices = data;        
+        this.invoices = data;
       },
       error: (error) => {
         this.toastr.error('No se encontraron órdenes pendientes')
