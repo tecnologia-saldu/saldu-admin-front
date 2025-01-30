@@ -21,7 +21,7 @@ export class AuthService {
     })
     .pipe(
       tap(response => {
-        this.tokenService.saveToken(response.token);
+        this.tokenService.saveToken(response.token, response.name);
       })
     )
   }

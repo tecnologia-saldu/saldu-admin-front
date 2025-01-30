@@ -1,92 +1,109 @@
 <section class="bg-bg text-white flex flex-col justify-between sidebar gap-1">
-    <ul class="pt-2">
-        <a [routerLink]="['/dashboard']">
-            <li class="py-4 px-5 mx-2 rounded-3xl" [routerLinkActive]="['bg-bglight']">
-                <fa-icon [icon]="faChartLine" class="px-2"></fa-icon> Dashboard
-            </li>
-        </a>
-        <cdk-accordion class="py-4">
-            <li (click)="itemInvoices.toggle()" class="py-4 px-5 mx-2 rounded-3xl cursor-pointer flex items-center justify-between">
-                <div>
-                    <fa-icon [icon]="faFileLines" class="px-2"></fa-icon> Facturación
-                </div>
-                <fa-icon [icon]="faChevronDown" [class.rotate-180]="itemInvoices.expanded"></fa-icon>
-            </li>
-            <cdk-accordion-item #itemInvoices="cdkAccordionItem">
-                <a routerLink="/pending-invoices">
-                    <li class="py-3 px-5 mx-5 mt-2 mb-1 rounded-3xl" [routerLinkActive]="['bg-bglight']"
-                        [style.display]="itemInvoices.expanded ? '' : 'none'"><fa-icon [icon]="faFileInvoice" class="px-2"></fa-icon> Órdenes pendientes
-                    </li>
-                </a>
-            </cdk-accordion-item>
-            <cdk-accordion-item #itemInvoices="cdkAccordionItem">
-                <a routerLink="/done-invoices" >
-                    <li class="py-3 px-5 mx-5 mb-2 rounded-3xl" [routerLinkActive]="['bg-bglight']"
-                        [style.display]="itemInvoices.expanded ? '' : 'none'"><fa-icon [icon]="faFileInvoiceDollar" class="px-2"></fa-icon> Órdenes facturadas</li>
-                </a>
-            </cdk-accordion-item>
-        </cdk-accordion>
-        <cdk-accordion>
-            <li (click)="itemProducts.toggle()" class="py-4 px-5 mx-2 rounded-3xl cursor-pointer flex items-center justify-between">
-                <div>
-                    <fa-icon [icon]="faList" class="px-2"></fa-icon> Productos
-                </div>
-                <fa-icon [icon]="faChevronDown" [class.rotate-180]="itemProducts.expanded"></fa-icon>
-            </li>
-            <cdk-accordion-item #itemProducts="cdkAccordionItem">
-                <li class="py-3 px-5 mx-5 mt-2 mb-1 rounded-3xl" [routerLinkActive]="['bg-bglight']" [routerLink]="['/upload-products']"
-                    [style.display]="itemProducts.expanded ? '' : 'none'"><fa-icon [icon]="faFileArrowUp" class="px-2"></fa-icon> Carga de productos
+    <div>
+        <div class="flex space-x-6 px-4 py-6 items-center justify-between">
+            <img src="/assets/LogoFondoAt.png" alt="Logo Saldu Blanco y Amarillo" class="m-auto max-w-28 cursor-pointer"
+                routerLink="/dashboard">
+            <fa-icon class="bars lg:hidden cursor-pointer pr-4" [icon]="faXmark" (click)="onCloseSidebar()"></fa-icon>
+        </div>
+        <ul class="pt-2">
+            <a [routerLink]="['/dashboard']">
+                <li class="py-4 px-5 mx-2 rounded-3xl" [routerLinkActive]="['bg-bglight']">
+                    <fa-icon [icon]="faChartLine" class="px-2"></fa-icon> Dashboard
                 </li>
-            </cdk-accordion-item>
-            <cdk-accordion-item #itemProducts="cdkAccordionItem">
-                <a [routerLink]="['/products-list']">
-                    <li class="py-3 px-5 mx-5 mb-1 rounded-3xl" [routerLinkActive]="['bg-bglight']"
-                        [style.display]="itemProducts.expanded ? '' : 'none'"><fa-icon [icon]="faNotdef" class="px-2"></fa-icon> Listado de productos sin imagen
-                    </li>
-                </a>
-            </cdk-accordion-item>
-            <cdk-accordion-item #itemProducts="cdkAccordionItem">
-                <a routerLink="/provider-products">
-                    <li class="py-3 px-5 mx-5 mb-2 rounded-3xl" [routerLinkActive]="['bg-bglight']"
-                        [style.display]="itemProducts.expanded ? '' : 'none'"><fa-icon [icon]="faImages" class="px-2"></fa-icon> Listado de productos con imagen
-                    </li>
-                </a>
-            </cdk-accordion-item>
-        </cdk-accordion>
-        <cdk-accordion>
-            <li (click)="itemUsers.toggle()" class="py-4 px-5 mx-2 rounded-3xl cursor-pointer flex items-center justify-between">
-                <div>
-                    <fa-icon [icon]="faUsers" class="px-2"></fa-icon> Gestión de usuarios
-                </div>
-                <fa-icon [icon]="faChevronDown" [class.rotate-180]="itemUsers.expanded"></fa-icon>
-            </li>
-            <cdk-accordion-item #itemUsers="cdkAccordionItem">
-                <a routerLink="/create-user">
+            </a>
+            <cdk-accordion class="py-4">
+                <li (click)="$event.stopPropagation(); itemInvoices.toggle()"
+                    class="py-4 px-5 mx-2 rounded-3xl cursor-pointer flex items-center justify-between">
+                    <div class="pr-2">
+                        <fa-icon [icon]="faFileLines" class="px-2"></fa-icon> Facturación
+                    </div>
+                    <fa-icon [icon]="faChevronDown" [class.rotate-180]="itemInvoices.expanded"></fa-icon>
+                </li>
+                <cdk-accordion-item #itemInvoices="cdkAccordionItem">
+                    <a routerLink="/pending-invoices">
+                        <li class="py-3 px-5 mx-5 mt-2 mb-1 rounded-3xl" [routerLinkActive]="['bg-bglight']"
+                            [style.display]="itemInvoices.expanded ? '' : 'none'"><fa-icon [icon]="faFileInvoice"
+                                class="px-2"></fa-icon> Órdenes pendientes
+                        </li>
+                    </a>
+                </cdk-accordion-item>
+                <cdk-accordion-item #itemInvoices="cdkAccordionItem">
+                    <a routerLink="/done-invoices">
+                        <li class="py-3 px-5 mx-5 mb-2 rounded-3xl" [routerLinkActive]="['bg-bglight']"
+                            [style.display]="itemInvoices.expanded ? '' : 'none'"><fa-icon [icon]="faFileInvoiceDollar"
+                                class="px-2"></fa-icon> Órdenes facturadas</li>
+                    </a>
+                </cdk-accordion-item>
+            </cdk-accordion>
+            <cdk-accordion>
+                <li (click)="$event.stopPropagation(); itemProducts.toggle()"
+                    class="py-4 px-5 mx-2 rounded-3xl cursor-pointer flex items-center justify-between">
+                    <div class="pr-2">
+                        <fa-icon [icon]="faList" class="px-2"></fa-icon> Productos
+                    </div>
+                    <fa-icon [icon]="faChevronDown" [class.rotate-180]="itemProducts.expanded"></fa-icon>
+                </li>
+                <cdk-accordion-item #itemProducts="cdkAccordionItem">
                     <li class="py-3 px-5 mx-5 mt-2 mb-1 rounded-3xl" [routerLinkActive]="['bg-bglight']"
-                        [style.display]="itemUsers.expanded ? '' : 'none'"><fa-icon [icon]="faUserPlus" class="px-2"></fa-icon> Creación de usuarios
+                        [routerLink]="['/upload-products']" [style.display]="itemProducts.expanded ? '' : 'none'">
+                        <fa-icon [icon]="faFileArrowUp" class="px-2"></fa-icon> Carga de productos
                     </li>
-                </a>
-            </cdk-accordion-item>
-            <cdk-accordion-item #itemUsers="cdkAccordionItem">
-                <a routerLink="/user-edition">
-                    <li class="py-3 px-5 mx-5 mb-2 rounded-3xl" [routerLinkActive]="['bg-bglight']"
-                        [style.display]="itemUsers.expanded ? '' : 'none'"><fa-icon [icon]="faUserPen" class="px-2"></fa-icon> Edición de usuarios
-                    </li>
-                </a>
-            </cdk-accordion-item>
-        </cdk-accordion>
+                </cdk-accordion-item>
+                <cdk-accordion-item #itemProducts="cdkAccordionItem">
+                    <a [routerLink]="['/products-list']">
+                        <li class="py-3 px-5 mx-5 mb-1 rounded-3xl" [routerLinkActive]="['bg-bglight']"
+                            [style.display]="itemProducts.expanded ? '' : 'none'"><fa-icon [icon]="faNotdef"
+                                class="px-2"></fa-icon> Listado de productos sin imagen
+                        </li>
+                    </a>
+                </cdk-accordion-item>
+                <cdk-accordion-item #itemProducts="cdkAccordionItem">
+                    <a routerLink="/provider-products">
+                        <li class="py-3 px-5 mx-5 mb-2 rounded-3xl" [routerLinkActive]="['bg-bglight']"
+                            [style.display]="itemProducts.expanded ? '' : 'none'"><fa-icon [icon]="faImages"
+                                class="px-2"></fa-icon> Listado de productos con imagen
+                        </li>
+                    </a>
+                </cdk-accordion-item>
+            </cdk-accordion>
+            <cdk-accordion>
+                <li (click)="$event.stopPropagation(); itemUsers.toggle()"
+                    class="py-4 px-5 mx-2 rounded-3xl cursor-pointer flex items-center justify-between">
+                    <div class="pr-2">
+                        <fa-icon [icon]="faUsers" class="px-2"></fa-icon> Gestión de usuarios
+                    </div>
+                    <fa-icon [icon]="faChevronDown" [class.rotate-180]="itemUsers.expanded"></fa-icon>
+                </li>
+                <cdk-accordion-item #itemUsers="cdkAccordionItem">
+                    <a routerLink="/create-user">
+                        <li class="py-3 px-5 mx-5 mt-2 mb-1 rounded-3xl" [routerLinkActive]="['bg-bglight']"
+                            [style.display]="itemUsers.expanded ? '' : 'none'"><fa-icon [icon]="faUserPlus"
+                                class="px-2"></fa-icon> Creación de usuarios
+                        </li>
+                    </a>
+                </cdk-accordion-item>
+                <cdk-accordion-item #itemUsers="cdkAccordionItem">
+                    <a routerLink="/user-edition">
+                        <li class="py-3 px-5 mx-5 mb-2 rounded-3xl" [routerLinkActive]="['bg-bglight']"
+                            [style.display]="itemUsers.expanded ? '' : 'none'"><fa-icon [icon]="faUserPen"
+                                class="px-2"></fa-icon> Edición de usuarios
+                        </li>
+                    </a>
+                </cdk-accordion-item>
+            </cdk-accordion>
 
-        <!-- <a href="#">
-            <li class="py-4 px-8">
-                <fa-icon [icon]="faDolly"></fa-icon> Mis Órdenes
-            </li>
-        </a>
-        <a href="#">
-            <li class="py-4 px-8">
-                <fa-icon [icon]="faChartBar"></fa-icon> Reportes
-            </li>
-        </a> -->
-    </ul>
+            <!-- <a href="#">
+                <li class="py-4 px-8">
+                    <fa-icon [icon]="faDolly"></fa-icon> Mis Órdenes
+                </li>
+            </a>
+            <a href="#">
+                <li class="py-4 px-8">
+                    <fa-icon [icon]="faChartBar"></fa-icon> Reportes
+                </li>
+            </a> -->
+        </ul>
+    </div>
     <button (click)="logout()" class="py-8 hover:text-yellow"><fa-icon [icon]="faRightFromBracket"></fa-icon> Cerrar
         sesión</button>
 </section>

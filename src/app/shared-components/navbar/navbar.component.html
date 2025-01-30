@@ -1,10 +1,10 @@
-<div class="flex justify-between bg-bg text-white px-8 py-4 text-xl">
-    <div class="flex space-x-6">
+<div class="flex justify-between bg-bg text-white px-8 py-4 text-xl h-20 items-center">
+    <div class="flex space-x-14 lg:space-x-0">
         <fa-icon class="bars lg:hidden cursor-pointer" [icon]="faBars" (click)="onToggleSidebar()"></fa-icon>
-        <img src="/assets/LogoFondoAt.png" alt="Logo Saldu blanco y amarillo" class="max-w-28 cursor-pointer" routerLink="/dashboard">
+        <h1>Bienvenido, {{ userName }}</h1>
     </div>
-    <div class="flex space-x-2">
-        <h1>Saldu</h1>
+    <div class="flex space-x-2 ">
         <div><fa-icon [icon]="faUser"></fa-icon></div>
+        <h2>{{ userName }}</h2>
     </div>
 </div>

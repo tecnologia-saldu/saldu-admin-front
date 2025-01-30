@@ -4,11 +4,12 @@ import { Invoice } from '../../../../models/invoice.model';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { ButtonComponent } from '../../../../shared-components/button/button.component';
 
 @Component({
   selector: 'app-done-invoices',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './done-invoices.component.html',
   styleUrl: './done-invoices.component.css'
 })

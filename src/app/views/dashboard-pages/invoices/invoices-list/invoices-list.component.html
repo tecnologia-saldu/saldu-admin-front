@@ -11,7 +11,6 @@
                         <td class="p-2 text-right md:p-4">Total a facturar</td>
                         <td class="p-2 text-center md:p-4">Fecha de pedido</td>
                         <td class="p-2 md:p-4">Estado</td>
-                        <td class="text-center hidden md:table-cell p-4">Editar</td>
                         <td class="p-2 md:p-4"><input type="checkbox" [(ngModel)]="selectAll"
                                 (change)="toggleSelectAll()">
                         </td>
@@ -30,12 +29,10 @@
                                 target="_blank">{{
                                 invoice.taxedPrice | currency: '$': 'symbol':'1.0-0' }}</a></td>
                         <td class="p-2 border-b-2 text-center md:p-4"><a [routerLink]="['/invoice-detail', invoice.id]"
-                                target="_blank">{{ invoice.createdAt.substring(0, 10) }}</a></td>
+                                target="_blank">{{ invoice.orderDate.substring(0, 10) }}</a></td>
                         <td class="p-2 border-b-2 md:p-4"><a [routerLink]="['/invoice-detail', invoice.id]"
                                 target="_blank">{{
                                 invoice.siigoStatus }}</a></td>
-                        <td class=" border-b-2 text-center hidden md:table-cell p-4"><fa-icon
-                                [icon]="faPenToSquare"></fa-icon></td>
                         <td class="p-2 border-b-2 md:p-4"><input type="checkbox" [(ngModel)]="invoice.checkbox"
                                 (change)="checkboxChanged()"></td>
                     </tr>

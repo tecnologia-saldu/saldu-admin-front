@@ -20,6 +20,7 @@ export interface Invoice {
     publicUrl: string;
     createdAt: string;
     updatedAt: string;
+    orderDate: string;
     paymentOption: PaymentOption;
     salduInlineProducts: SalduInlineProduct[];
     checkbox: boolean;

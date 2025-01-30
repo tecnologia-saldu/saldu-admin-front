@@ -19,7 +19,7 @@ export class MainLayoutComponent {
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.toggleSidebar();
+        this.isSidebarVisible = false;
       }
     });
   }

@@ -9,7 +9,7 @@ h1 {
 }
 
 section {
-    height: calc(100vh - 68px);
+    height: calc(100dvh - 80px);
 }
 
 .section {

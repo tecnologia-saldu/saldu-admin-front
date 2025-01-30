@@ -9,7 +9,7 @@
                         <td class="p-2 md:p-4">Orden id</td>
                         <td class="text-right hidden md:table-cell md:p-4">Total orden</td>
                         <td class="p-2 text-right md:p-4">Total facturado</td>
-                        <td class="p-2 text-center md:p-4">Fecha de pedido</td>
+                        <td class="p-2 text-center md:p-4">Fecha de facturación</td>
                         <td class="p-2 text-center md:p-4">Estado Siigo</td>
                         <td class="p-2 text-center md:p-4">Enviado</td>
                         <td class="p-2 text-center md:p-4">Link Siigo</td>
@@ -24,7 +24,7 @@
                         <td class="p-2 border-b-2 text-center md:p-4">{{ invoice.createdAt.substring(0, 10) }}</td>
                         <td class="p-2 border-b-2 text-center md:p-4">{{ invoice.siigoStatus }}</td>
                         <td class="p-2 border-b-2 text-center md:p-4">{{ invoice.customerMailed ? 'Enviado al cliente' : 'Pendiente de envío' }}</td>
-                        <td class="p-2 border-b-2 text-center whitespace-nowrap overflow-hidden text-ellipsis break-all max-w-5 md:max-w-prose md:p-4"><a [href]="invoice.publicUrl">{{ invoice.publicUrl }}</a></td>
+                        <td class="p-2 border-b-2 text-center whitespace-nowrap overflow-hidden text-ellipsis break-all max-w-5 md:max-w-prose md:p-4"><app-button typeBtn="button" color="blue"><a [href]="invoice.publicUrl" target="_blank">Ver en Siigo</a></app-button></td>
                     </tr>
                     }
                 </tbody>

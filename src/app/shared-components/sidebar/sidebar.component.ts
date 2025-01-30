@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
-import { faChartLine, faUserPen, faUserPlus, faNotdef, faImages, faFileArrowUp, faChevronDown, faUsers, faFileLines, faList, faDolly, faChartBar, faRightFromBracket, faX, faFileInvoice, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
+import { faChartLine, faXmark, faBars, faUser, faUserPen, faUserPlus, faNotdef, faImages, faFileArrowUp, faChevronDown, faUsers, faFileLines, faList, faDolly, faChartBar, faRightFromBracket, faX, faFileInvoice, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../services/auth.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -31,6 +31,16 @@ export class SidebarComponent {
   faNotdef = faNotdef;
   faUserPlus = faUserPlus;
   faUserPen = faUserPen;
+  faUser = faUser;
+  faBars = faBars;
+  faXmark = faXmark;
+
+  @Input() isSidebarVisible = false;
+  @Output() closeSidebar = new EventEmitter<void>();
+
+  onCloseSidebar() {
+    this.closeSidebar.emit();
+  }
 
   constructor(
     private authService: AuthService,

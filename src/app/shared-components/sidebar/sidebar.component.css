@@ -2,6 +2,10 @@ li:hover {
     background-color: #2f2f2f;
 }
 
+.sidebar {
+    height: 100dvh;
+}
+
 .sidebar.hidden {
     transform: translateX(-100%);
 }
