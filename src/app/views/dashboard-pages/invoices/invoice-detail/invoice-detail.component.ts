@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Invoice } from '../../../../models/invoice.model';
 import { InvoicesService } from '../../../../services/invoices.service';
 import { ButtonComponent } from '../../../../shared-components/button/button.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-invoice-detail',
@@ -15,9 +16,11 @@ import { ButtonComponent } from '../../../../shared-components/button/button.com
 export class InvoiceDetailComponent {
   @Input() id!: string;
 
+  private invoicesService = inject(InvoicesService);
+  private toastr = inject(ToastrService);
+
   editMode = signal(false);
   invoice = signal<Invoice | null>(null);
-  private invoicesService = inject(InvoicesService);
   subtotal = signal(0);
   iva = signal(0);
   total = signal(0);
@@ -32,7 +35,7 @@ export class InvoiceDetailComponent {
             resolve();
           },
           error: (err) => {
-            console.error('Error fetching invoice:', err);
+            this.toastr.error('Error al cargar la factura')
             resolve();
           }
         });
@@ -72,15 +75,15 @@ export class InvoiceDetailComponent {
   updateInvoiceInfo(event: Event) {
     const invoiceId = this.invoice()?.id;
     const commission = this.invoice()?.salduInlineProducts.find(product => product.salduProduct.id == 4)?.taxedPrice;
-    if(invoiceId && commission != undefined && commission >= 0) {
+    if (invoiceId && commission != undefined && commission >= 0) {
       this.invoicesService.updateInvoiceInfo(invoiceId, commission).subscribe({
         next: (data) => {
-          console.log('Invoice updated successfully:', data);
           this.invoice.set(data);
           this.calculateTotals(data);
+          this.toastr.success('Factura actualizada correctamente')
         },
-        error: (err) => {
-          console.error('Error updating invoice:', err);
+        error: (error) => {
+          this.toastr.error('Error actualizando la factura');
         }
       });
     }
@@ -92,22 +95,22 @@ export class InvoiceDetailComponent {
     if (currentInvoice && currentInvoice.id) {
       this.invoicesService.uploadToSiigo(currentInvoice.id).subscribe({
         next: (data) => {
-          console.log('Invoice uploaded successfully:', data);
+          this.toastr.success('Factura enviada correctamente')
         },
         error: (err) => {
-          console.error('Error uploading invoice:', err);
+          this.toastr.error('Error al enviar la factura')
         }
       });
     } else {
-      console.error('No invoice available to upload');
+      this.toastr.error('Error del servidor')
     }
   }
 
 
   constructor(
-    ) {}
-  
-    
+  ) { }
+
+
 
 }
 

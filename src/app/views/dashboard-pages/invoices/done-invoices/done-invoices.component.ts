@@ -15,9 +15,9 @@ import { ButtonComponent } from '../../../../shared-components/button/button.com
 })
 export class DoneInvoicesComponent {
 
-  private invoicesService = inject(InvoicesService);  
+  private invoicesService = inject(InvoicesService);
   private toastr = inject(ToastrService);
-  
+
   invoices: Invoice[] = [];
 
   ngOnInit() {
@@ -26,9 +26,13 @@ export class DoneInvoicesComponent {
 
   getDoneInvoices() {
     this.invoicesService.getDoneInvoices().subscribe({
-      next: (data) => 
-        this.invoices = data,
-      error: (error) => 
+      next: (data) => {
+        this.invoices = data;
+        if (this.invoices.length == 0) {
+          this.toastr.error('No se encontraron órdenes');
+        }
+      },
+      error: (error) =>
         this.toastr.error('No se encontraron órdenes')
     })
   }

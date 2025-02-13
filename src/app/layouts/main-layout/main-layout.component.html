@@ -1,11 +1,11 @@
 <div class="w-dvw flex">
     <aside [class.open]="!isSidebarVisible"  (click)="toggleSidebar()"
-        class="sidebar absolute left-0 z-10 max-w-sm w-full transition-transform duration-300 transform lg:static lg:block lg:w-3/12 h-full ">
+        class="sidebar absolute left-0 z-10 max-w-sm w-full transition-transform duration-300 transform lg:static lg:block lg:w-3/12 h-dvh">
         <app-sidebar />
     </aside>
     <div class="main-container flex flex-col bg-lightgray w-full">
         <div class="navbar"><app-navbar (toggle)="toggleSidebar()" /></div>
-        <div class="main bg-lightgray relative h-full">
+        <div class="main bg-lightgray relative h-full overflow-y-auto">
             <ngx-spinner color="#e8e454" [fullScreen]="false">
                 <p class="text-2xl text-white">Cargando...</p>
             </ngx-spinner>

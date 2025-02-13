@@ -36,19 +36,19 @@
                 <tr *cdkVirtualFor="let product of products; let i = index" class="text-sm bg-white h-auto md:p-4">
                     <td class="p-2 border-b-2 break-all md:p-4 md:max-w-40">{{ product.sku}}</td>
                     <td class="p-2 border-b-2 max-w-40 break-normal md:p-4">{{ product.name }}</td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage1" class="w-36 mx-auto">
+                    <td class="p-2 border-b-2 text-center md:p-4"><div [style.background-image]="'url(' + product.urlImage1 + ')'" class="w-32 h-32 bg-cover bg-center mx-auto rounded-md"></div>
                         <input type="radio" (change)="onImageSelect(product.sku, product.urlImage1)"
                             [value]="product.urlImage1" [name]="product.sku" class="">
                     </td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage2" class="w-36 mx-auto">
+                    <td class="p-2 border-b-2 text-center md:p-4"><div [style.background-image]="'url(' + product.urlImage2 + ')'" class="w-32 h-32 bg-cover bg-center mx-auto rounded-md"></div>
                         <input type="radio" (change)="onImageSelect(product.sku, product.urlImage2)"
                             [value]="product.urlImage2" [name]="product.sku" class="">
                     </td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage3" class="w-36 mx-auto">
+                    <td class="p-2 border-b-2 text-center md:p-4"><div [style.background-image]="'url(' + product.urlImage3 + ')'" class="w-32 h-32 bg-cover bg-center mx-auto rounded-md"></div>
                         <input type="radio" (change)="onImageSelect(product.sku, product.urlImage3)"
                             [value]="product.urlImage3" [name]="product.sku" class="">
                     </td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage4" class="w-36 mx-auto">
+                    <td class="p-2 border-b-2 text-center md:p-4"><div [style.background-image]="'url(' + product.urlImage4 + ')'" class="w-32 h-32 bg-cover bg-center mx-auto rounded-md"></div>
                         <input type="radio" (change)="onImageSelect(product.sku, product.urlImage4)"
                             [value]="product.urlImage4" [name]="product.sku" class="">
                     </td>

@@ -1,10 +1,10 @@
-<div class="flex justify-between bg-bg text-white px-8 py-4 text-xl h-20 items-center">
-    <div class="flex space-x-14 lg:space-x-0">
-        <fa-icon class="bars lg:hidden cursor-pointer" [icon]="faBars" (click)="onToggleSidebar()"></fa-icon>
+<div class="flex justify-between bg-bg text-white px-2 md:px-8 py-4 text-xl h-20 items-center gap-2">
+    <div class="flex space-x-4 md:space-x-14 lg:space-x-0">
+        <fa-icon class="bars lg:hidden cursor-pointer pt-4 md:pt-0" [icon]="faBars" (click)="onToggleSidebar()"></fa-icon>
         <h1>Bienvenido, {{ userName }}</h1>
     </div>
-    <div class="flex space-x-2 ">
-        <div><fa-icon [icon]="faUser"></fa-icon></div>
+    <div class="flex space-x-2">
+        <div><fa-icon class="pt-4 md:pt-0" [icon]="faUser"></fa-icon></div>
         <h2>{{ userName }}</h2>
     </div>
 </div>

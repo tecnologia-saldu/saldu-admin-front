@@ -1,4 +1,4 @@
-<section class="section text-bglight" cdkScrollable>
+<section class="section text-bglight overflow-y-auto">
     <h1 class="py-4">Listado de productos con imagen</h1>
     <div class="flex justify-between py-2">
         <form [formGroup]="formProvider">
@@ -8,42 +8,45 @@
                 @for(user of users; track $index) {
                 <option [value]="user.id_wooCommerce">{{ user.email }}</option>
                 }
-            </select><fa-icon class="px-8 cursor-pointer" (click)="getProducts(formProvider.get('selectProvider')?.value)"
-                [icon]="faMagnifyingGlass"></fa-icon>
-                <!-- <select name="Seleccione una carga"  id="" formControlName="selectLoad" class="p-2 border-b-2 bg-lightgray max-w-min">
-                    <option value="default" selected="selected">Seleccione un archivo de carga</option>
-                    @for(load of loads; track $index) {
-                        <option [value]="load.id">{{ load.reference }}</option>
-                    } 
-                </select> -->
+            </select><fa-icon class="px-8 cursor-pointer"
+                (click)="getProducts(formProvider.get('selectProvider')?.value)" [icon]="faMagnifyingGlass"></fa-icon>
         </form>
         <div class="gap-4 flex">
-            <app-button typeBtn="button" color="blue" (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value, 'no_seleccionada')">Descargar listado sin imágenes</app-button>
-            <app-button typeBtn="button" color="blue" (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value, 'seleccionada')">Descargar listado con imágenes</app-button>
+            <app-button typeBtn="button" color="blue"
+                (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value, 'no_seleccionada')">Descargar
+                listado sin imágenes</app-button>
+            <app-button typeBtn="button" color="blue"
+                (click)="downloadProductsCsv(formProvider.get('selectProvider')?.value, 'seleccionada')">Descargar
+                listado con imágenes</app-button>
         </div>
     </div>
     <cdk-virtual-scroll-viewport itemSize="200" minBufferPx=200 maxBufferPx=400 ViewportRuler class="viewport">
-        <table class="w-full border-collapse border-spacing-0" cdkScrollable>
+        <table class="w-full border-collapse border-spacing-0">
             @if(products.length > 0) {
-                <thead cdkScrollable>
-                    <tr>
-                        <td class="p-2 md:p-4">SKU</td>
-                        <td class="p-2 md:p-4">Descripción</td>
-                        <td class="p-2 text-center md:p-4">IMG</td>
-                    </tr>
-                </thead>
+            <thead cdkScrollable>
+                <tr>
+                    <td class="p-2 md:p-4">SKU</td>
+                    <td class="p-2 md:p-4">Descripción</td>
+                    <td class="p-2 text-center md:p-4">IMG</td>
+                </tr>
+            </thead>
             }
             <tbody>
                 <tr *cdkVirtualFor="let product of products; let i = index" class="text-sm bg-white md:p-4">
                     <td class="p-2 border-b-2 break-all md:p-4 md:max-w-40">{{ product.sku}}</td>
                     <td class="p-2 border-b-2 max-w-40 break-normal md:p-4">{{ product.name }}</td>
-                    <td class="p-2 border-b-2 text-center md:p-4"><img [src]="product.urlImage1" class="w-36 mx-auto">
+                    <td class="p-2 border-b-2 text-center md:p-4">
+                        <div [style.background-image]="'url(' + product.urlImage1 + ')'"
+                            class="w-32 h-32 bg-cover bg-center mx-auto rounded-md"></div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </cdk-virtual-scroll-viewport>
     @if(products.length > 0) {
-        <div class="flex justify-end"><p class="bg-bg text-white text-center mt-2 max-w-fit px-8 py-2 flex justify-end">Productos en total: {{ products.length }}</p></div>
+    <div class="flex justify-end">
+        <p class="bg-bg text-white text-center mt-2 max-w-fit px-8 py-2 flex justify-end">Productos en total: {{
+            products.length }}</p>
+    </div>
     }
 </section>

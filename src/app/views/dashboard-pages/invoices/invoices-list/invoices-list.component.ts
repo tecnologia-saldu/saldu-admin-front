@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-// import { NgxPaginationModule } from 'ngx-pagination';
 
 
 import { Invoice } from '../../../../models/invoice.model';
@@ -29,13 +28,16 @@ export class InvoicesListComponent {
   selectAll = false;  
 
   ngOnInit() {
-    this.getInvoices();    
+    this.getInvoices();
   }
 
   getInvoices() {
     this.invoicesService.getInvoices().subscribe({
       next: (data) => {
         this.invoices = data;
+        if(this.invoices.length == 0) {
+          this.toastr.error('No se encontraron órdenes pendientes');
+        }
       },
       error: (error) => {
         this.toastr.error('No se encontraron órdenes pendientes')
@@ -79,4 +81,6 @@ export class InvoicesListComponent {
     return this.invoices.filter((invoice) => invoice.checkbox);
   }
   
+  
+
 }
