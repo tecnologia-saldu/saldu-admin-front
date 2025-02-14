@@ -1,27 +1,108 @@
-# SalduNew
+# Saldu Admin Front
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+Saldu Admin Front es una aplicación web desarrollada en **Angular 18** con **Tailwind CSS**, diseñada para la gestión de actividades de Backoffice dentro de la organización **Saldu**. La plataforma permite realizar operaciones clave como:
 
-## Development server
+- **Facturación**
+- **Cargas masivas de productos**
+- **Gestión de usuarios**
+- **Gestión de productos**
+- **Módulos adicionales en desarrollo** 🚀
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Instalación y Configuración
 
-## Code scaffolding
+### 1️⃣ Prerrequisitos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Antes de instalar el proyecto, asegúrate de tener las siguientes herramientas instaladas en tu computadora:
 
-## Build
+- [Node.js](https://nodejs.org/) (versión 18 o superior recomendada)
+- [Angular CLI](https://angular.io/cli) instalado globalmente:
+  ```bash
+  npm install -g @angular/cli
+  ```
+- [Git](https://git-scm.com/)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 2️⃣ Clonar el repositorio
 
-## Running unit tests
+```bash
+git clone https://github.com/tecnologia-saldu/saldu-admin-front.git
+cd saldu-admin-front
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 3️⃣ Instalar dependencias
 
-## Running end-to-end tests
+Ejecuta el siguiente comando para instalar las dependencias necesarias:
+```bash
+npm install
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 4️⃣ Configuración del entorno
 
-## Further help
+El proyecto requiere un archivo de configuración para las variables de entorno. Crea un archivo `.env` o revisa `environment.ts` dentro de `src/environments/` y ajusta las variables según sea necesario.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Ejemplo de configuración:
+```ts
+export const environment = {
+  production: false,
+  apiUrl: 'https://api.saldu.com/v1',
+  authUrl: 'https://auth.saldu.com'
+};
+```
+
+### 5️⃣ Ejecutar la aplicación
+
+Para iniciar la aplicación en modo desarrollo, usa:
+```bash
+ng serve
+```
+La aplicación estará disponible en **http://localhost:4200**.
+
+Si necesitas ejecutar la aplicación con un host diferente o un puerto específico:
+```bash
+ng serve --host=0.0.0.0 --port=4300
+```
+
+## 📦 Generación de Build
+
+Para compilar el proyecto para producción, ejecuta:
+```bash
+ng build --configuration=production
+```
+Los archivos compilados estarán en la carpeta `dist/`.
+
+## 📚 Estructura del Proyecto
+
+```bash
+saldu-admin-front/
+│-- src/
+│   │-- app/              # Módulos principales de la app
+│   │-- assets/           # Archivos estáticos
+│   │-- environments/     # Configuración de entornos
+│   │-- styles.css        # Configuración de estilos con Tailwind
+│-- angular.json          # Configuración del proyecto Angular
+│-- package.json          # Dependencias y scripts
+│-- README.md             # Este archivo 😉
+```
+
+## 🛠 Tecnologías Utilizadas
+
+- **Angular 18** - Framework principal
+- **Tailwind CSS** - Estilos y diseño responsivo
+- **TypeScript** - Lenguaje principal
+- **RxJS** - Manejo de eventos reactivos
+
+## 🤝 Contribución
+
+Si deseas contribuir al desarrollo del proyecto:
+1. Haz un fork del repositorio
+2. Crea una rama con tu feature: `git checkout -b feature/nueva-feature`
+3. Realiza tus cambios y haz commit: `git commit -m "Agregada nueva feature"`
+4. Sube los cambios: `git push origin feature/nueva-feature`
+5. Abre un Pull Request 🚀
+
+## 📄 Licencia
+
+Este proyecto es propiedad de **Saldu**. Su uso está restringido a los miembros autorizados de la organización.
+
+---
+
+💡 **¡Gracias por contribuir y mejorar Saldu Admin Front!** 💡
