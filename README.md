@@ -17,7 +17,7 @@ Antes de instalar el proyecto, asegúrate de tener las siguientes herramientas i
 - [Node.js](https://nodejs.org/) (versión 18 o superior recomendada)
 - [Angular CLI](https://angular.io/cli) instalado globalmente:
   ```bash
-  npm install -g @angular/cli
+  npm install -g @angular/cli@18
   ```
 - [Git](https://git-scm.com/)
 
