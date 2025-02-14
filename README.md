@@ -76,11 +76,14 @@ saldu-admin-front/
 │-- src/
 │   │-- app/              # Módulos principales de la app
 │   │-- assets/           # Archivos estáticos
+│   │-- utils/            # Lógica y funcionamientos globales
 │   │-- environments/     # Configuración de entornos
 │   │-- styles.css        # Configuración de estilos con Tailwind
+│   │-- .editorconfig     # Configuración de formatos para IDE
 │-- angular.json          # Configuración del proyecto Angular
 │-- package.json          # Dependencias y scripts
 │-- README.md             # Este archivo 😉
+│-- tailwind.config.js    # Configuraciones globales de Tailwind
 ```
 
 ## 🛠 Tecnologías Utilizadas
